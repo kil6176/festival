@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.spring.festival.mapper.memberMapper">
+
+     <select id="selectMember" resultType="memberVO">
+        SELECT * FROM festival_member
+     </select>
+     
+     <insert id="insertMember">
+     			INSERT INTO festival_member(id, password, name, nick, phone, email, birth) 
+     							VALUES(    #{id} 
+				                 		 , sha2(#{password},512)
+				                 		 , #{name}
+				                 		 , #{nick}
+				                 		 , #{phone}
+				                 		 , #{email}
+				                 		 , #{birth})
+     </insert>
+</mapper>
