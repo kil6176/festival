@@ -10,7 +10,7 @@
      </select>
      
      <insert id="insertMember">
-     			INSERT INTO festival_member(id, password, name, nick, phone, email, birth) 
+     			INSERT INTO member(m_id, m_pw, m_name, m_nickname, m_phonenum, m_email, m_birth) 
      							VALUES(    #{id} 
 				                 		 , sha2(#{password},512)
 				                 		 , #{name}
