@@ -6,7 +6,7 @@
 <mapper namespace="com.spring.festival.mapper.memberMapper">
 
      <select id="selectMember" resultType="memberVO">
-        SELECT * FROM festival_member
+        SELECT * FROM member
      </select>
      
      <insert id="insertMember">
