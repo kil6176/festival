@@ -28,6 +28,7 @@
 				<p>로그인 안 되어있음</p>
 				<a href="/register">가입페이지</a>
 				<a href="/login">로그인페이지</a>
+				<a href="/trashMap">지도 페이지</a>
 			</div>
 		</c:if>
 		<c:if test="${member != null }">

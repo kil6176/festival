@@ -165,4 +165,20 @@ public class HomeController
 
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value = "/trashMap", method = RequestMethod.GET)
+	public String trashMap(HttpSession session) throws Exception
+	{
+		logger.info("trashMap");
+
+		return "trashMap";
+	}
+	
+	@RequestMapping(value = "/trashCanSearch", method = { RequestMethod.POST, RequestMethod.GET})
+	public String trashCanSearch(HttpSession session) throws Exception
+	{
+		logger.info("trashCanSearch");
+
+		return "trashCanSearch";
+	}
 }
