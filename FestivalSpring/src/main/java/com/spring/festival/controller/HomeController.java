@@ -46,9 +46,10 @@ public class HomeController
 
 	// 회원가입 get
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void getRegister() throws Exception
+	public String getRegister() throws Exception
 	{
 		logger.info("get register");
+		return "home";
 	}
 
 	// 회원가입 post
@@ -62,7 +63,7 @@ public class HomeController
 		{
 			if (result == 1)
 			{
-				return "/register";
+				return "home";
 			}
 			else if (result == 0)
 			{
@@ -72,7 +73,7 @@ public class HomeController
 				{
 					if (result == 1)
 					{
-						return "/register";
+						return "home";
 					}
 					else if (result == 0)
 					{

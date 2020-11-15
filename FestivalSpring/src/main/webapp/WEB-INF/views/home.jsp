@@ -293,7 +293,7 @@
 		});
 	</script>
 <body>
-	<section id="container-fluid" style="max-width: 500px; margin: auto;">
+	<section id="container" style="max-width: 500px; margin: auto;">
 		<form action="/register" method="post">
 			<div align="center">
 				<img style="max-width: 100%;" src="/resources/images/banner/banner.png" />
