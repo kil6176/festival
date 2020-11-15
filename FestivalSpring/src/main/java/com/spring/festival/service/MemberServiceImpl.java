@@ -17,14 +17,23 @@ public class MemberServiceImpl implements MemberService {
    
    @Override
    public List<MemberVO> selectMember() throws Exception {
-
        return dao.selectMember();
    }
    
 	@Override
 	public void register(MemberVO vo) throws Exception {
-		
 		dao.register(vo);
-		
+	}
+
+	@Override
+	public int idDupleCheck(MemberVO vo) throws Exception {
+		int result = dao.idDupleCheck(vo);
+		return result;
+	}
+
+	@Override
+	public int nickDupleCheck(MemberVO vo) throws Exception {
+		int result = dao.nickDupleCheck(vo);
+		return result;
 	}
 }

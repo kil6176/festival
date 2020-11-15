@@ -9,6 +9,14 @@
         SELECT * FROM member
      </select>
      
+     <select id="idDupleCheck" resultType="int">
+        SELECT COUNT(*) FROM member where m_id = #{id}
+     </select>
+     
+     <select id="nickDupleCheck" resultType="int">
+        SELECT COUNT(*) FROM member where m_nickname = #{nick}
+     </select>
+
      <insert id="insertMember">
      			INSERT INTO member(m_id, m_pw, m_name, m_nickname, m_phonenum, m_email, m_birth) 
      							VALUES(    #{id} 

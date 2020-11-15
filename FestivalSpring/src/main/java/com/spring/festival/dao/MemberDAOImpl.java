@@ -27,4 +27,16 @@ public class MemberDAOImpl implements MemberDAO {
 	public void register(MemberVO vo) throws Exception {
 		sqlSession.insert(Namespace+".insertMember", vo);
 	}
+	
+	@Override
+	public int idDupleCheck(MemberVO vo) throws Exception {
+		int result = sqlSession.selectOne(Namespace+".idDupleCheck", vo);
+		return result;
+	}	
+	@Override
+	
+	public int nickDupleCheck(MemberVO vo) throws Exception {
+		int result = sqlSession.selectOne(Namespace+".nickDupleCheck", vo);
+		return result;
+	}
 }
