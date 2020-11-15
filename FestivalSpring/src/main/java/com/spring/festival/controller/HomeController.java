@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.festival.dto.MemberVO;
 import com.spring.festival.service.MemberService;
@@ -49,7 +52,7 @@ public class HomeController
 	public String getRegister() throws Exception
 	{
 		logger.info("get register");
-		return "home";
+		return "register";
 	}
 
 	// 회원가입 post
@@ -63,7 +66,7 @@ public class HomeController
 		{
 			if (result == 1)
 			{
-				return "home";
+				return "register";
 			}
 			else if (result == 0)
 			{
@@ -73,7 +76,7 @@ public class HomeController
 				{
 					if (result == 1)
 					{
-						return "home";
+						return "register";
 					}
 					else if (result == 0)
 					{
@@ -100,7 +103,7 @@ public class HomeController
 
 	// 아이디 체크 post
 	@ResponseBody
-	@RequestMapping(value = "/idDupleCheck", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/idDupleCheck", method = { RequestMethod.POST, RequestMethod.GET })
 	public int idDupleCheck(MemberVO vo) throws Exception
 	{
 		logger.info("post idDupleCheck");
@@ -112,7 +115,7 @@ public class HomeController
 
 	// 닉네임 체크 post
 	@ResponseBody
-	@RequestMapping(value = "/nickDupleCheck", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/nickDupleCheck", method = { RequestMethod.POST, RequestMethod.GET })
 	public int nickDupleCheck(MemberVO vo) throws Exception
 	{
 		logger.info("post nickDupleCheck");
@@ -128,5 +131,38 @@ public class HomeController
 	{
 		logger.info("get login");
 		return "login";
+	}
+
+	// 로그인
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception
+	{
+		logger.info("post login");
+
+		HttpSession session = req.getSession();
+		MemberVO login = service.login(vo);
+
+		if (login == null)
+		{
+			session.setAttribute("member", null);
+			rttr.addFlashAttribute("msg", false);
+		}
+		else
+			session.setAttribute("member", login);
+
+		if (session.getAttribute("member") == null)
+			return "redirect:/login";
+		else
+			return "redirect:/";
+
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) throws Exception
+	{
+
+		session.invalidate();
+
+		return "redirect:/";
 	}
 }

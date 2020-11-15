@@ -1,97 +1,117 @@
 package com.spring.festival.dto;
 
-public class MemberVO {
- 
-    private String id;
-    private String password;
-    private String name;
-    private String phone;
-    private String birth;
-    private String email;
-    private String address;
-    private String reg;
-    private String authority;
-    private String nick;
-    
-	public String getId()
+public class MemberVO
+{
+
+	private String m_id;
+	private String m_pw;
+	private String m_name;
+	private String m_phoneNum;
+	private String m_birth;
+	private String m_email;
+	private String m_address;
+	private String m_joindate;
+	private String m_authority;
+	private String m_nick;
+
+	public String getM_id()
 	{
-		return id;
+		return m_id;
 	}
-	public void setId(String id)
+
+	public void setM_id(String m_id)
 	{
-		this.id = id;
+		this.m_id = m_id;
 	}
-	public String getPassword()
+
+	public String getM_pw()
 	{
-		return password;
+		return m_pw;
 	}
-	public void setPassword(String password)
+
+	public void setM_pw(String m_pw)
 	{
-		this.password = password;
+		this.m_pw = m_pw;
 	}
-	public String getName()
+
+	public String getM_name()
 	{
-		return name;
+		return m_name;
 	}
-	public void setName(String name)
+
+	public void setM_name(String m_name)
 	{
-		this.name = name;
+		this.m_name = m_name;
 	}
-	public String getPhone()
+
+	public String getM_phoneNum()
 	{
-		return phone;
+		return m_phoneNum;
 	}
-	public void setPhone(String phone)
+
+	public void setM_phoneNum(String m_phoneNum)
 	{
-		this.phone = phone;
+		this.m_phoneNum = m_phoneNum;
 	}
-	public String getBirth()
+
+	public String getM_birth()
 	{
-		return birth;
+		return m_birth;
 	}
-	public void setBirth(String birth)
+
+	public void setM_birth(String m_birth)
 	{
-		this.birth = birth;
+		this.m_birth = m_birth;
 	}
-	public String getEmail()
+
+	public String getM_email()
 	{
-		return email;
+		return m_email;
 	}
-	public void setEmail(String mail)
+
+	public void setM_email(String m_email)
 	{
-		this.email = mail;
+		this.m_email = m_email;
 	}
-	public String getAddress()
+
+	public String getM_address()
 	{
-		return address;
+		return m_address;
 	}
-	public void setAddress(String address)
+
+	public void setM_address(String m_address)
 	{
-		this.address = address;
+		this.m_address = m_address;
 	}
-	public String getReg()
+
+	public String getM_joindate()
 	{
-		return reg;
+		return m_joindate;
 	}
-	public void setReg(String reg)
+
+	public void setM_joindate(String m_joindate)
 	{
-		this.reg = reg;
+		this.m_joindate = m_joindate;
 	}
-	public String getAuthority()
+
+	public String getM_authority()
 	{
-		return authority;
+		return m_authority;
 	}
-	public void setAuthority(String authority)
+
+	public void setM_authority(String m_authority)
 	{
-		this.authority = authority;
+		this.m_authority = m_authority;
 	}
-	public String getNick()
+
+	public String getM_nick()
 	{
-		return nick;
+		return m_nick;
 	}
-	public void setNick(String nick)
+
+	public void setM_nick(String m_nick)
 	{
-		this.nick = nick;
+		this.m_nick = m_nick;
 	}
- 
+
 }

@@ -36,4 +36,10 @@ public class MemberServiceImpl implements MemberService {
 		int result = dao.nickDupleCheck(vo);
 		return result;
 	}
+	
+
+	@Override
+	public MemberVO login(MemberVO vo) throws Exception {
+		return dao.login(vo);
+	}
 }

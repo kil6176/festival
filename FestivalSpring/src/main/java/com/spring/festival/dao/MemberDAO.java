@@ -16,5 +16,8 @@ public interface MemberDAO {
     
     //닉네임 중복체크
     public int nickDupleCheck(MemberVO vo) throws Exception;
+    
+    //로그인
+    public MemberVO login(MemberVO vo) throws Exception;
 }
  
