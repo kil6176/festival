@@ -6,6 +6,7 @@
  
         <typeAliases>
             <typeAlias type="com.spring.festival.dto.MemberVO" alias="memberVO"/>
+            <typeAlias type="com.spring.festival.dto.TrashVO" alias="TrashVO"/>
         </typeAliases>
-
+        
     </configuration>

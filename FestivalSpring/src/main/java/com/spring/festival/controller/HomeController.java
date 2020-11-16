@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.festival.dto.MemberVO;
+import com.spring.festival.dto.TrashVO;
 import com.spring.festival.service.MemberService;
+import com.spring.festival.service.TrashService;
 
 /**
  * Handles requests for the application home page.
@@ -30,6 +32,9 @@ public class HomeController
 
 	@Inject
 	private MemberService service;
+
+	@Inject
+	private TrashService trashService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -174,11 +179,13 @@ public class HomeController
 		return "trashMap";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/trashCanSearch", method = { RequestMethod.POST, RequestMethod.GET})
-	public String trashCanSearch(HttpSession session) throws Exception
+	public List<TrashVO> trashCanSearch(TrashVO vo) throws Exception
 	{
 		logger.info("trashCanSearch");
 
-		return "trashCanSearch";
+		List<TrashVO> trashCanList = trashService.searchTrashCan(vo);
+		return trashCanList;
 	}
 }

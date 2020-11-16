@@ -85,29 +85,33 @@
 		var contentData = {"contentID" : contentID};
 		removeCanMarker();
         $.ajax({
+			url: "/trashCanSearch",
             type: "POST",
-			cache: false,
-			data: contentData,
-            dataType: 'xml',
-            url: "/trashCanSearch",
-
+			data : {"fc_num" : contentID},
+            dataType: 'json',
             success: function (data) {
-                $(data).find('can').each(function () {
-                    var id = $('id', this).text(); //쓰레기통 id
-                    var trashHeight = $('trashHeight', this).text(); // 쓰레기의 높이
-                    var canSize = $('canSize', this).text(); //쓰레기통 사이즈
-                    var canX = $('canX', this).text(); //쓰레기통 x
-                    var canY = $('canY', this).text(); //쓰레기통 y
-                    var date = $('date', this).text(); //쓰레기통 로그 날짜
-                    var groupName = $('groupName', this).text(); //쓰레기통 설치 축제명
-					var contentID = $('contentID', this).text(); //쓰레기통 설치 축제 아이디
+			console.log("성공");
+			for(var i = 0 ; i < data.length; i++){
+					var obj = data;
+	                var id = obj[i].t_id ;//쓰레기통 id
+					console.log(id);
+	                var trashHeight = obj[i].t_height; // 쓰레기의 높이
+					console.log(trashHeight);
+	                var canSize = obj[i].t_can_height; //쓰레기통 사이즈
+	
+					console.log(canSize);
+	                var canX = obj[i].x; //쓰레기통 x
+	                var canY = obj[i].y; //쓰레기통 y
+	               // var date = $('date', this).text(); //쓰레기통 로그 날짜
+	               // var groupName = $('groupName', this).text(); //쓰레기통 설치 축제명
+				  //var contentID = contentID; //쓰레기통 설치 축제 아이디
 					var canPosition = new kakao.maps.LatLng(canY, canX);
 					var canMarker = "";
 					var trashPersent = (trashHeight / canSize * 100.0);
 					
 					//퍼센트로 마커 색깔 정하기
 					if(trashPersent <= 25)
-           				canMarker = addCanMarker(canPosition, blueMarker);//x,y좌표 넣어서 마커생성
+	       				canMarker = addCanMarker(canPosition, blueMarker);//x,y좌표 넣어서 마커생성
 					else if(25 < trashPersent && trashPersent <= 50)
 						canMarker = addCanMarker(canPosition, greenMarker);//x,y좌표 넣어서 마커생성
 					else if(50 < trashPersent && trashPersent <= 75)
@@ -126,8 +130,8 @@
 				                canInfowindow.close();
 				            });
 						}
-			     	   })(canMarker, trashPersent);
-				 });
+			     	})(canMarker, trashPersent);
+				}
             }
         });
     }
