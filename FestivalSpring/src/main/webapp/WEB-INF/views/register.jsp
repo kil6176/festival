@@ -81,29 +81,25 @@
 			$("#m_nick").keyup(function()
 			{
 				$("#nickDupleCheck").attr("value", "N");
-				$.ajax
-				({
+				$.ajax({
 					url : "/nickDupleCheck",
 					type : "post",
 					dataType : "json",
 					data : {"m_nick" : $("#m_nick").val()},
-					success : function(data)
-					{
+					success : function(data){
 						if(data == 1){
-							$("#nickCheckText").text("사용중인 닉네임입니다 다른 닉네임를 입력해주세요");
+							$("#nickCheckText").text("사용중인 닉네임입니다 다른 닉네임을 입력해주세요");
 							$("#nickCheckText").css("color", "red");
 							$("#nickCheckText").css("margin-bottom", "8px");
-						}
-						else if(data == 0)
-						{
+						}else if(data == 0){
 							if($("#m_nick").val() != "")
 							{
 								if(!checkSpace($("#m_nick").val()))
 								{
-										$("#nickDupleCheck").attr("value", "Y");
-										$("#nickCheckText").text("사용가능한 닉네임 입니다");
-										$("#nickCheckText").css("color", "green");
-										$("#nickCheckText").css("margin-bottom", "8px");
+									$("#nickDupleCheck").attr("value", "Y");
+									$("#nickCheckText").text("사용가능한 아이디 입니다");
+									$("#nickCheckText").css("color", "green");
+									$("#nickCheckText").css("margin-bottom", "8px");
 								}
 								else
 								{
@@ -178,6 +174,7 @@
 			    var phone = document.getElementById("m_phoneNum");
 			    var name = document.getElementById("m_name");
 			    var birth = document.getElementById("m_birth");
+			    var nick = document.getElementById("m_nick");
 
 				if( id.value == '' || id.value == null )
 				{
@@ -185,106 +182,119 @@
 				    return false;
 				}
 
-				if( id.value.replace( blank_pattern, '' ) == "" )
+				else if( id.value.replace( blank_pattern, '' ) == "" )
 				{
 				    alert(' 아이디에 공백만 입력되었습니다 ');
 				    return false;
 				}
 
-				if(checkSpace(id.value))
+				else if(checkSpace(id.value))
 				{
 				    alert(' 아이디에 공백은 사용할 수 없습니다. ');
 				    return false;
 				}
 				
-				if($("#idDupleCheck").val()=="N")
+				else if($("#idDupleCheck").val()=="N")
 				{
 				    alert('아이디 중복을 확인해주세요');
 				    return false;
 				}
 				
-				if( password.value == '' || password.value == null )
+				else if( password.value == '' || password.value == null )
 				{
 				    alert( '비밀번호를 입력해주세요' );
 				    return false;
 				}
 				
-				if( pwPattern.test(password.value) != true)
+				else if( pwPattern.test(password.value) != true)
 				{
 				    alert('비밀번호는 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이여야 합니다.');
 				    return false;
 				}
 				
-				if(password.value != rePassword.value)
+				else if(password.value != rePassword.value)
 				{
 				    alert(' 비밀번호와 비밀번호 확인이 같지 않습니다. ');
 				    return false;
 				}
 
-				if( name.value == '' || name.value == null )
+				else if( name.value == '' || name.value == null )
 				{
 				    alert( '이름을 입력해주세요' );
 				    return false;
 				}
 				
-				if( namePattern.test(name.value) != true)
+				else if( namePattern.test(name.value) != true)
 				{
 				    alert('이름은 한글만 입력 해주세요 ');
 				    return false;
 				}
 
-				if( name.value.replace( blank_pattern, '' ) == "" )
+				else if( name.value.replace( blank_pattern, '' ) == "" )
 				{
 				    alert(' 이름에 공백만 입력되었습니다 ');
 				    return false;
 				}
 	
-				if(checkSpace(name.value))
+				else if(checkSpace(name.value))
 				{
 				    alert(' 이름에 공백은 사용할 수 없습니다. ');
 				    return false;
 				}
 				
-				if( nick.value == '' || nick.value == null )
+				else if( nick.value == '' || nick.value == null )
 				{
 				    alert( '닉네임을 입력해주세요' );
 				    return false;
 				}
 				
-				if( nick.value.replace( blank_pattern, '' ) == "" )
+				else if( nick.value.replace( blank_pattern, '' ) == "" )
 				{
 				    alert(' 닉네임에 공백만 입력되었습니다 ');
 				    return false;
 				}
 				
-				if(checkSpace(nick.value))
+				else if(checkSpace(nick.value))
 				{
 				    alert(' 닉네임에 공백은 사용할 수 없습니다. ');
 				    return false;
 				}
 
-				if($("#nickDupleCheck").val()=="N")
+				else if($("#nickDupleCheck").val()=="N")
 				{
 				    alert('닉네임 중복을 확인해주세요');
 				    return false;
 				}
-				if( phonePattern.test(phone.value) == true)
+				
+				else if( phonePattern.test(phone.value) == true)
 				{
 				    alert(' 휴대폰 번호에 -를 확인해주세요 ');
 				    return false;
 				}
 				
-				if( emailPattern.test(email.value) != true)
+				else if( phone.value == '' || phone.value == null)
+				{
+				    alert(' 휴대폰 번호를 입력해주세요 ');
+				    return false;
+				}
+				else if( emailPattern.test(userEmail.value) != true)
 				{
 				    alert(' 이메일 형식을 확인해주세요 ');
 				    return false;
 				}
 				
-				if( birth.value == '' || birth.value == null )
+				else if( userEmail.value == '' || userEmail.value == null)
+				{
+				    alert(' 이메일을 입력해주세요 ');
+				    return false;
+				}
+				
+				else if( birth.value == '' || birth.value == null )
 				{
 				    alert( '생일을 입력해주세요' );
 				    return false;
 				}
+				
 				if(confirm("가입을 하시겠습니까?")==false)
 				{
 					return false;
@@ -335,20 +345,18 @@
 			<div id="nickCheckText"></div>
 
 			<div class="form-group has-feedback">
-				<label class="control-label" for="m_phoneNum">핸드폰</label> <input
-					class="form-control" type="text" id="m_phoneNum" name="m_phoneNum"
-					placeholder="입력 시 -없이 입력 해주세요" />
+				<label class="control-label" for="m_phoneNum">핸드폰</label> 
+				<input class="form-control" type="text" id="m_phoneNum" name="m_phoneNum" placeholder="입력 시 -없이 입력 해주세요" />
 			</div>
 
 			<div class="form-group has-feedback">
-				<label class="control-label" for="m_email">이메일</label> <input
-					class="form-control" type="text" id="m_email" name="m_email"
-					placeholder="example@exam.com / example@exam.co.kr" />
+				<label class="control-label" for="m_email">이메일</label> 
+				<input class="form-control" type="text" id="m_email" name="m_email" value='' placeholder="example@exam.com / example@exam.co.kr" />
 			</div>
 
 			<div class="form-group has-feedback">
-				<label class="control-label" for="m_birth">생일</label> <input
-					class="form-control" type="date" id="m_birth" name="m_birth" />
+				<label class="control-label" for="m_birth">생일</label> 
+				<input class="form-control" type="date" id="m_birth" name="m_birth" value='' />
 			</div>
 
 			<div class="form-group has-feedback" align="right">
