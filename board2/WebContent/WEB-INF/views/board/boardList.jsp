@@ -71,15 +71,15 @@
 				for(var a=0; a<listLen; a++){
 					
 					var board_num		= list[a].board_num; 
-					var fb_group_num 	= list[a].fb_group_num;
+					var frb_group_num 	= list[a].frb_group_num;
 					var m_nickname 		= list[a].m_nickname; 
-					var fb_title 		= list[a].fb_title; 
-					var fb_content 		= list[a].fb_content; 
-					var fb_hits 		= list[a].fb_hits;
-					var fb_delete_yn 	= list[a].fb_delete_yn; 
+					var frb_title 		= list[a].frb_title; 
+					var frb_content 		= list[a].frb_content; 
+					var frb_hits 		= list[a].frb_hits;
+					var frb_delete_yn 	= list[a].frb_delete_yn; 
 					var m_id 			= list[a].m_id;
-					var fb_insert_date 	= list[a].fb_insert_date; 
-					var fb_update_date 	= list[a].fb_update_date;
+					var frb_insert_date 	= list[a].frb_insert_date; 
+					var frb_update_date 	= list[a].frb_update_date;
 					
 					str += "<tr>";
 					str += "<td>"+ board_num +"</td>";
@@ -88,11 +88,11 @@
 					
 					
 					
-					str += fb_title +"</td>";
+					str += frb_title +"</td>";
 										
-					str += "<td>"+ fb_hits +"</td>";
+					str += "<td>"+ frb_hits +"</td>";
 					str += "<td>"+ m_nickname +"</td>";	
-					str += "<td>"+ fb_insert_date +"</td>";	
+					str += "<td>"+ frb_insert_date +"</td>";	
 					str += "</tr>";
 					
 				} 

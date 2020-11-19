@@ -50,12 +50,7 @@ public class BoardDao {
 		return sqlSession.selectList(NAMESPACE + ".getBoardFileList", boardFileForm);
 	}
 
-	/** 게시판 - 그룹 번호 조회 
-	public int getFbGroupNum (BoardForm boardForm) throws Exception {
-
-		return sqlSession.selectOne(NAMESPACE + ".getFb_group_num", boardForm);
-	}
-	*/
+	
 	/** 게시판 - 등록 */
 	public int insertBoard(BoardForm boardForm) throws Exception {
 		return sqlSession.insert(NAMESPACE + ".insertBoard", boardForm);

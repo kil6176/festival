@@ -25,18 +25,18 @@
 	/** 게시판 - 작성  */
 	function insertBoard(){
 
-		var fb_title = $("#fb_title").val();
-		var fb_content = $("#fb_content").val();
+		var frb_title = $("#frb_title").val();
+		var frb_content = $("#frb_content").val();
 			
-		if (fb_title == ""){			
+		if (frb_title == ""){			
 			alert("제목을 입력해주세요.");
-			$("#fb_title").focus();
+			$("#frb_title").focus();
 			return;
 		}
 		
-		if (fb_content == ""){			
+		if (frb_content == ""){			
 			alert("내용을 입력해주세요.");
-			$("#fb_content").focus();
+			$("#frb_content").focus();
 			return;
 		}
 			
@@ -98,7 +98,7 @@
 				    <tbody id="tbody">
 						<tr>
 							<th>제목<span class="t_red">*</span></th>
-							<td><input id="fb_title" name="fb_title" value="" class="tbox01"/></td>
+							<td><input id="frb_title" name="frb_title" value="" class="tbox01"/></td>
 						</tr>
 						<tr>
 							<th>작성자<span class="t_red">*</span></th>
@@ -106,7 +106,7 @@
 						</tr>
 						<tr>
 							<th>내용<span class="t_red">*</span></th>
-							<td><textarea id="fb_content" name="fb_content" cols="10" rows="5" class="textarea01"></textarea></td>
+							<td><textarea id="frb_content" name="frb_content" cols="10" rows="5" class="textarea01"></textarea></td>
 						</tr>
 						<tr>
 							<th scope="row">첨부파일</th>

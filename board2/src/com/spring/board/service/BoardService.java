@@ -97,7 +97,7 @@ public class BoardService {
 		int insertCnt = 0;
 
 		//int FbGroupNum = boardDao.getFbGroupNum(boardForm);
-		//boardForm.setFb_group_num(FbGroupNum);
+		//boardForm.setfrb_group_num(FbGroupNum);
 
 		insertCnt = boardDao.insertBoard(boardForm);
 
