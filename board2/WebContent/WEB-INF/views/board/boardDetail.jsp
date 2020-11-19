@@ -76,33 +76,33 @@
 		if(obj != null){								
 							
 			var board_num		= obj.board_num; 
-			var frb_group_num 	= obj.frb_group_num; 
+			var fb_group_num 	= obj.fb_group_num; 
 			var m_nickname 		= obj.m_nickname; 
-			var frb_title 		= obj.frb_title; 
-			var frb_content	 	= obj.frb_content; 
-			var frb_hits 		= obj.frb_hits;
-			var frb_delete_yn 	= obj.frb_delete_yn; 
+			var fb_title 		= obj.fb_title; 
+			var fb_content	 	= obj.fb_content; 
+			var fb_hits 		= obj.fb_hits;
+			var fb_delete_yn 	= obj.fb_delete_yn; 
 			var m_id 			= obj.m_id;
-			var frb_insert_date 	= obj.frb_insert_date; 
-			var frb_update_date 	= obj.frb_update_date;
+			var fb_insert_date 	= obj.fb_insert_date; 
+			var fb_update_date 	= obj.fb_update_date;
 			var files			= obj.files;		
 			var filesLen		= files.length;
 						
 			str += "<tr>";
 			str += "<th>제목</th>";
-			str += "<td>"+ frb_title +"</td>";
+			str += "<td>"+ fb_title +"</td>";
 			str += "<th>조회수</th>";
-			str += "<td>"+ frb_hits +"</td>";
+			str += "<td>"+ fb_hits +"</td>";
 			str += "</tr>";		
 			str += "<tr>";
 			str += "<th>작성자</th>";
 			str += "<td>"+ m_nickname +"</td>";
 			str += "<th>작성일시</th>";
-			str += "<td>"+ frb_insert_date +"</td>";
+			str += "<td>"+ fb_insert_date +"</td>";
 			str += "</tr>";		
 			str += "<tr>";
 			str += "<th>내용</th>";
-			str += "<td colspan='3'>"+ frb_content +"</td>";
+			str += "<td colspan='3'>"+ fb_content +"</td>";
 			str += "</tr>";
 			
 			if(filesLen > 0){
@@ -204,6 +204,7 @@
 				<button type="button" class="btn black mr5" onclick="javascript:goBoardList();">목록으로</button>
 				<button type="button" class="btn black mr5" onclick="javascript:goBoardUpdate();">수정하기</button>
 				<button type="button" class="btn black" onclick="javascript:deleteBoard();">삭제하기</button>
+				<button type="button" class="btn black mr5" onclick="javascript:goBoardReply();">답글쓰기</button>
 			</div>
 		</div>
 	</div>

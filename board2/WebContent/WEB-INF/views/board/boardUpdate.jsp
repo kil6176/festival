@@ -62,20 +62,20 @@
 		if(obj != null){								
 							
 			var board_num		= obj.board_num; 
-			var frb_group_num 	= obj.frb_group_num; 
+			var fb_group_num 	= obj.fb_group_num; 
 			var m_nickname 		= obj.m_nickname; 
-			var frb_title 		= obj.frb_title; 
-			var frb_content 		= obj.frb_content; 
-			var frb_hits 		= obj.frb_hits;
-			var frb_delete_yn 	= obj.frb_delete_yn; 
+			var fb_title 		= obj.fb_title; 
+			var fb_content 		= obj.fb_content; 
+			var fb_hits 		= obj.fb_hits;
+			var fb_delete_yn 	= obj.fb_delete_yn; 
 			var m_id 			= obj.m_id;
-			var frb_insert_date 	= obj.frb_insert_date; 
-			var frb_update_date 	= obj.frb_update_date;
+			var fb_insert_date 	= obj.fb_insert_date; 
+			var fb_update_date 	= obj.fb_update_date;
 			var files			= obj.files;		
 			var filesLen		= files.length;
 								
-			$("#frb_title").val(frb_title);			
-			$("#frb_content").val(frb_content);
+			$("#fb_title").val(fb_title);			
+			$("#fb_content").val(fb_content);
 			$("#m_nickname").text(m_nickname);
 			
 			var fileStr = "";
@@ -115,18 +115,18 @@
 	/** 게시판 - 수정  */
 	function updateBoard(){
 
-		var boardSubject = $("#frb_title").val();
-		var boardContent = $("#frb_content").val();
+		var boardSubject = $("#fb_title").val();
+		var boardContent = $("#fb_content").val();
 			
-		if (frb_title == ""){			
+		if (fb_title == ""){			
 			alert("제목을 입력해주세요.");
-			$("#frb_title").focus();
+			$("#fb_title").focus();
 			return;
 		}
 		
-		if (frb_content == ""){			
+		if (fb_content == ""){			
 			alert("내용을 입력해주세요.");
-			$("#frb_content").focus();
+			$("#fb_content").focus();
 			return;
 		}
 		
@@ -198,7 +198,7 @@
 				    <tbody id="tbody">
 				       <tr>
 							<th>제목<span class="t_red">*</span></th>
-							<td><input id="frb_title" name="frb_title" value="" class="tbox01"/></td>
+							<td><input id="fb_title" name="fb_title" value="" class="tbox01"/></td>
 						</tr>
 						 <tr>
 							<th>작성자</th>
@@ -206,7 +206,7 @@
 						</tr>
 						<tr>
 							<th>내용<span class="t_red">*</span></th>
-							<td colspan="3"><textarea id="frb_content" name="frb_content" cols="50" rows="5" class="textarea01"></textarea></td>
+							<td colspan="3"><textarea id="fb_content" name="fb_content" cols="50" rows="5" class="textarea01"></textarea></td>
 						</tr>
 						<tr>
 							<th>첨부파일</th>

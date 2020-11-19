@@ -5,6 +5,7 @@
 	<groupId>com.spring</groupId>
 	<artifactId>board</artifactId>
 	<name>board</name>
+	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	
 	<properties>

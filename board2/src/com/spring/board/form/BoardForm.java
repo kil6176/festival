@@ -9,15 +9,15 @@ public class BoardForm extends CommonForm {
 
 	List<MultipartFile> files;
 	int board_num;
-	int frb_group_num;
+	int fb_group_num;
 	String m_nickname;
-	String frb_title;
-	String frb_content;
-	int frb_hits;
-	String frb_delete_yn;
+	String fb_title;
+	String fb_content;
+	int fb_hits;
+	String fb_delete_yn;
 	String m_id;
-	Date frb_insert_date;
-	Date frb_update_date;
+	Date fb_insert_date;
+	Date fb_update_date;
 	String search_type;
 	String board_file;
 	String delete_file;
@@ -30,6 +30,8 @@ public class BoardForm extends CommonForm {
 		this.files = files;
 	}
 
+	
+
 	public int getBoard_num() {
 		return board_num;
 	}
@@ -38,12 +40,12 @@ public class BoardForm extends CommonForm {
 		this.board_num = board_num;
 	}
 
-	public int getFrb_group_num() {
-		return frb_group_num;
+	public int getFb_group_num() {
+		return fb_group_num;
 	}
 
-	public void setFrb_group_num(int frb_group_num) {
-		this.frb_group_num = frb_group_num;
+	public void setFb_group_num(int fb_group_num) {
+		this.fb_group_num = fb_group_num;
 	}
 
 	public String getM_nickname() {
@@ -54,36 +56,36 @@ public class BoardForm extends CommonForm {
 		this.m_nickname = m_nickname;
 	}
 
-	public String getFrb_title() {
-		return frb_title;
+	public String getFb_title() {
+		return fb_title;
 	}
 
-	public void setFrb_title(String frb_title) {
-		this.frb_title = frb_title;
+	public void setFb_title(String fb_title) {
+		this.fb_title = fb_title;
 	}
 
-	public String getFrb_content() {
-		return frb_content;
+	public String getFb_content() {
+		return fb_content;
 	}
 
-	public void setFrb_content(String frb_content) {
-		this.frb_content = frb_content;
+	public void setFb_content(String fb_content) {
+		this.fb_content = fb_content;
 	}
 
-	public int getFrb_hits() {
-		return frb_hits;
+	public int getFb_hits() {
+		return fb_hits;
 	}
 
-	public void setFrb_hits(int frb_hits) {
-		this.frb_hits = frb_hits;
+	public void setFb_hits(int fb_hits) {
+		this.fb_hits = fb_hits;
 	}
 
-	public String getFrb_delete_yn() {
-		return frb_delete_yn;
+	public String getFb_delete_yn() {
+		return fb_delete_yn;
 	}
 
-	public void setFrb_delete_yn(String frb_delete_yn) {
-		this.frb_delete_yn = frb_delete_yn;
+	public void setFb_delete_yn(String fb_delete_yn) {
+		this.fb_delete_yn = fb_delete_yn;
 	}
 
 	public String getM_id() {
@@ -94,20 +96,20 @@ public class BoardForm extends CommonForm {
 		this.m_id = m_id;
 	}
 
-	public Date getFrb_insert_date() {
-		return frb_insert_date;
+	public Date getFb_insert_date() {
+		return fb_insert_date;
 	}
 
-	public void setFrb_insert_date(Date frb_insert_date) {
-		this.frb_insert_date = frb_insert_date;
+	public void setFb_insert_date(Date fb_insert_date) {
+		this.fb_insert_date = fb_insert_date;
 	}
 
-	public Date getFrb_update_date() {
-		return frb_update_date;
+	public Date getFb_update_date() {
+		return fb_update_date;
 	}
 
-	public void setFrb_update_date(Date frb_update_date) {
-		this.frb_update_date = frb_update_date;
+	public void setFb_update_date(Date fb_update_date) {
+		this.fb_update_date = fb_update_date;
 	}
 
 	public String getSearch_type() {
@@ -133,8 +135,4 @@ public class BoardForm extends CommonForm {
 	public void setDelete_file(String delete_file) {
 		this.delete_file = delete_file;
 	}
-
-	
-
-	
 }
