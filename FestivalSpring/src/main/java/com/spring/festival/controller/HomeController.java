@@ -188,4 +188,13 @@ public class HomeController
 		List<TrashVO> trashCanList = trashService.searchTrashCan(vo);
 		return trashCanList;
 	}
+	
+	@RequestMapping(value = "/mTrashMap", method = RequestMethod.GET)
+	public String mTrashMap(HttpSession session) throws Exception
+	{
+		logger.info("mTrashMap");
+
+		return "mTrashMap";
+	}
+	
 }

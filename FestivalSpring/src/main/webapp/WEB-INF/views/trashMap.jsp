@@ -14,6 +14,7 @@
 <script src="resources/js/UIScript.js"></script>
 <script src="resources/js/all.min.js"></script>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2020-10-27</title>
 <style>
 .hasDatepicker {
@@ -415,7 +416,7 @@ display:inline-block; width:80%
 			</div>
 	</div>
 	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee02c1c9ce632acddab0b05095b5e657"></script>
+		src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=ee02c1c9ce632acddab0b05095b5e657"></script>
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {

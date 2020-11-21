@@ -125,7 +125,7 @@
 				            kakao.maps.event.addListener(canMarker, 'mouseover', function() {
 				                displayCanInfowindow(canMarker, trashPersent);
 				            });
-				
+
 				            kakao.maps.event.addListener(canMarker, 'mouseout', function() {
 				                canInfowindow.close();
 				            });
