@@ -51,7 +51,22 @@ public class HomeController
 
 		return "home";
 	}
-
+	//모바일 지도
+	@RequestMapping(value = "/mTrashMap", method = RequestMethod.GET)
+	public String mTrashMap() throws Exception
+	{
+		logger.info("get mTrashMap");
+		return "mTrashMap";
+	}
+	
+	// 로그인 창으로 가기
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() throws Exception
+	{
+		logger.info("get login");
+		return "login";
+	}
+	
 	// 회원가입 get
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String getRegister() throws Exception
@@ -130,14 +145,6 @@ public class HomeController
 		return result;
 	}
 
-	// 로그인 창으로 가기
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() throws Exception
-	{
-		logger.info("get login");
-		return "login";
-	}
-
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception
@@ -189,12 +196,6 @@ public class HomeController
 		return trashCanList;
 	}
 	
-	@RequestMapping(value = "/mTrashMap", method = RequestMethod.GET)
-	public String mTrashMap(HttpSession session) throws Exception
-	{
-		logger.info("mTrashMap");
 
-		return "mTrashMap";
-	}
 	
 }
