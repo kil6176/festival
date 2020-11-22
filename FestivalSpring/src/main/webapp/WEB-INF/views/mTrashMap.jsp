@@ -210,9 +210,6 @@ ul {
 	border-color: green;
 }
 
-.optionHidden{
-	display : none;
-}
 
 .searchInputBox{
 	height: 21.33px;
