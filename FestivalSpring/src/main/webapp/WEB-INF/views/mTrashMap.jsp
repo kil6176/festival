@@ -2,9 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, java.text.*"%>
 <%@ page import="java.sql.*"%>
-<% request.setCharacterEncoding("utf-8"); %>
-
-<% response.setContentType("text/html; charset=utf-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
