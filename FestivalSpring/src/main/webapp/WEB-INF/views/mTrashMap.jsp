@@ -2,17 +2,20 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, java.text.*"%>
 <%@ page import="java.sql.*"%>
+<% request.setCharacterEncoding("utf-8"); %>
 
+<% response.setContentType("text/html; charset=utf-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script src="resources/js/mobile/subMenuScript.js"></script>
-<script src="resources/js/mobile/script.js"></script>
+<script src="resources/js/mobile/crossScript.js"></script>
 <script src="resources/js/mobile/UIScript.js"></script>
 <script src="resources/js/mobile/all.min.js"></script>
+<script src="resources/js/mobile/jquery.ajax-cross-origin.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2020-10-27</title>
@@ -39,11 +42,11 @@
 {
 	position:relative;
 	width: 100%;
-	height: 70px;
+	height: 130px;
 	margin: 0px;
 	overflow-y: auto;
 	background: #32cd32;
-	z-index: 1;
+	z-index: 1000;
 	font-size: 1rem;
 	overflow:hidden;
 }
@@ -241,6 +244,21 @@ ul {
 #sub_button{
 	padding-top:7px;
 }
+
+#watchPositionBtn
+{
+	position: absolute;
+	top: 200px;
+	width: 50px;
+	height: 50px;
+	margin: 0px;
+	z-index: 1000;
+}
+
+.watchPosition
+{
+	background-color:green;
+}
 </style>
 </head>
 <body style="padding:0px; margin:0px;">
@@ -267,6 +285,7 @@ ul {
 		<div id="map_size_wrap" style="width:100%; position:relative;height:calc(100% - 130px); overflow: hidden; padding:0px; margin:0px">
 			<div id="map" style="width:100%; position:relative;height:100%; overflow: hidden; padding:0px; margin:0px">
 			</div>
+			<button id="watchPositionBtn">실시간 위치정보</button>
 		</div>
 		
 		<div id="festival-list" class="displayNone" style="overflow-y:scroll; height:70%;" align="center">
@@ -358,20 +377,24 @@ ul {
 
 	<div id="serach-gonggan" class="displayNone">
 		<div class="gonggan-header-bar">
-			<div style="width: calc(100% - 10px); height:100%; margin:10px 5px 10px 5px;">
-		  		<div align="center" style="width:100%; height:50px;">
-		  			<div id="dateSearch" class="searchList" style="float:left;" >
-		  				<span class="searchBtn">
-		  				 	기간+지역
-		  				</span>
-		  			</div>
-		  			<div id="nameSearch" class="searchList" style="float:right;">
-		  				<span class="searchBtn">축제명</span>
-		  			</div>
-		  		</div>
-	  		</div>
+	  		<div style="width: calc(100% - 10px); height:100%; margin:10px 5px 10px 5px;">
+					<div style="height:50px; margin-bottom:10px;">
+						<button style="position:relative; height:100%;">로고</button>
+						<span>초록축제</span>
+						<button style="float:right; height:100%;">메뉴</button>
+					</div>
+			  		<div align="center" style="width:100%; height:50px;">
+			  			<div id="dateSearch" class="SearchList" style="float:left;" >
+			  				<span class="searchBtn">
+			  				기간+지역으로 축제 검색
+			  				</span>
+			  			</div>
+			  			<div id="nameSearch" class="searchList" style="float:right;">
+			  				<span class="searchBtn">축제명으로 축제 검색</span>
+			  			</div>
+			  		</div>
+		  	</div>
   		</div>
-  		
   		<div class="gonggan-search-bar" style="width:100%; height:100%;">
   			<div style="height:50px; border: 1px solid black; overflow:hidden;">
   				<span id="searchExit">
@@ -421,7 +444,7 @@ ul {
 	</div>
 	
 	<script type="text/javascript"
-		src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=ee02c1c9ce632acddab0b05095b5e657"></script>
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee02c1c9ce632acddab0b05095b5e657"></script>
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
@@ -453,7 +476,116 @@ ul {
 	    function relayOut() {
 	    	map.relayout();
 		}      
-			
+		var id, target, option;
+		var watchPosition;
+		$("#watchPositionBtn").off().click(function(){
+		   	if (!$(this).hasClass("watchPosition")) 
+		   	{
+		   		$("#watchPositionBtn").addClass('watchPosition');
+
+				if (navigator.geolocation) {
+				    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+				 watchPosition = setInterval(function()
+				    {
+					    navigator.geolocation.getCurrentPosition(function(position) {
+					        removeMarker();
+					        var lat = position.coords.latitude, // 위도
+					            lon = position.coords.longitude; // 경도
+
+								panTo(lon, lat);
+					        var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+					        
+
+							var placePosition = new kakao.maps.LatLng(lat, lon),
+		           				marker = addMarker(placePosition);//x,y좌표 넣어서 마커생성
+					            
+					      });
+				    },1000);
+				}
+		   	}
+		   	else
+		   	{
+		   		removeMarker();
+		   		clearInterval(watchPosition);
+		   		$("#watchPositionBtn").removeClass('watchPosition');
+		   	}
+		}); 
+		
+		// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+		function removeMarker() {
+		    for ( var i = 0; i < markers.length; i++ ) {
+		        markers[i].setMap(null);
+		    }   
+		    markers = [];
+		}
+		
+		 /* ----------------축제 마커 찍기 시작----------------- */
+		var markers = [];
+		// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
+		function addMarker(position) {
+		    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+		        imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
+		        imgOptions =  {
+		            spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
+		            spriteOrigin : new kakao.maps.Point(0, 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+		            offset: new kakao.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+		        },
+		        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+		            marker = new kakao.maps.Marker({
+		            position: position, // 마커의 위치
+		            image: markerImage 
+		        });
+		    marker.setMap(map); // 지도 위에 마커를 표출합니다
+		    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
+		
+		    return marker;
+		}
+		
+		// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+		function removeMarker() {
+		    for ( var i = 0; i < markers.length; i++ ) {
+		        markers[i].setMap(null);
+		    }   
+		    markers = [];
+		}
+
+	    /* ----------------축제 마커 찍기 끝----------------- */
+/*
+		if(navigator.geolocation)
+		{ // geolocation 을 지원한다면 위치를 요청한다. 
+	   		$("#watchPositionBtn").addClass('watchPosition');
+			function success(pos) 
+			{
+			   	if (!$(this).hasClass("watchPosition")) 
+			   	{
+			    	console.log('Congratulation, you reach the target');
+			    	navigator.geolocation.clearWatch(id);
+			    }
+		   	
+		    	function error(err) 
+		    	{
+		    	  console.warn('ERROR(' + err.code + '): ' + err.message);
+		    	};
+
+		    	target = 
+		    	{
+		    	  latitude : 0,
+		    	  longitude: 0,
+		    	}
+	
+		    	options = 
+		    	{
+		    	  enableHighAccuracy: false,
+		    	  timeout: 100,
+		    	  maximumAge: 0
+		    	};
+
+	    	id = navigator.geolocation.watchPosition(success, error, options);
+			}
+		}
+		else
+	        elt.innerHTML = "이 브라우저에서는 Geolocation이 지원되지 않습니다.";
+	        */
 	</script>
 </body>
 </html>
