@@ -23,21 +23,29 @@
 </script>
 <body>
 	<form name='homeForm' method="post" action="/login">
-		<c:if test="${member == null}">
 			<div>
-				<p>로그인 안 되어있음</p>
+			
+				<c:choose>
+					<c:when test="${member == null}">
+						<p>로그인 안 되어있음</p>
+					</c:when>
+				
+					<c:when test="${member != null }">
+							<p>${member.m_id}님 환영 합니다.</p>
+							<button id="logoutBtn" type="button">로그아웃</button>
+					</c:when>
+				</c:choose>
+				<br>
 				<a href="/register">가입페이지</a>
+				<br>
 				<a href="/login">로그인페이지</a>
+				<br>
 				<a href="/trashMap">지도 페이지</a>
+				<br>
 				<a href="/mTrashMap">모바일 지도 페이지</a>
+				<br>
+				<a href="/manager">마이 페이지 겸 관리 페이지</a>
 			</div>
-		</c:if>
-		<c:if test="${member != null }">
-			<div>
-				<p>${member.m_id}님 환영 합니다.</p>
-				<button id="logoutBtn" type="button">로그아웃</button>
-			</div>
-		</c:if>
 	</form>
 </body>
 </html>

@@ -19,5 +19,11 @@ public interface MemberDAO {
     
     //로그인
     public MemberVO login(MemberVO vo) throws Exception;
+
+    //회원정보 변경
+    public int infoChange(MemberVO vo) throws Exception;
+
+    //닉네임 중복체크
+    public int passwordCheck(MemberVO vo) throws Exception;
 }
  

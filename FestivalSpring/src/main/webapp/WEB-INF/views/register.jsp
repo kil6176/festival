@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="java.util.*"%>
+<%
+    request.setCharacterEncoding("UTF-8");
+%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
@@ -78,23 +82,23 @@
 			});
 			
 			//닉네임 중복체크
-			$("#m_nick").keyup(function()
+			$("#m_nickname").keyup(function()
 			{
 				$("#nickDupleCheck").attr("value", "N");
 				$.ajax({
 					url : "/nickDupleCheck",
 					type : "post",
 					dataType : "json",
-					data : {"m_nick" : $("#m_nick").val()},
+					data : {"m_nickname" : $("#m_nickname").val()},
 					success : function(data){
 						if(data == 1){
 							$("#nickCheckText").text("사용중인 닉네임입니다 다른 닉네임을 입력해주세요");
 							$("#nickCheckText").css("color", "red");
 							$("#nickCheckText").css("margin-bottom", "8px");
 						}else if(data == 0){
-							if($("#m_nick").val() != "")
+							if($("#m_nickname").val() != "")
 							{
-								if(!checkSpace($("#m_nick").val()))
+								if(!checkSpace($("#m_nickname").val()))
 								{
 									$("#nickDupleCheck").attr("value", "Y");
 									$("#nickCheckText").text("사용가능한 아이디 입니다");
@@ -174,7 +178,7 @@
 			    var phone = document.getElementById("m_phoneNum");
 			    var name = document.getElementById("m_name");
 			    var birth = document.getElementById("m_birth");
-			    var nick = document.getElementById("m_nick");
+			    var nick = document.getElementById("m_nickname");
 
 				if( id.value == '' || id.value == null )
 				{
@@ -337,8 +341,8 @@
 			</div>
 
 			<div class="form-group has-feedback">
-				<label class="control-label" for="m_nick">닉네임</label> <input
-					class="form-control" type="text" id="m_nick" name="m_nick"
+				<label class="control-label" for="m_nickname">닉네임</label> <input
+					class="form-control" type="text" id="m_nickname" name="m_nickname"
 					placeholder="닉네임에는 공백이 들어갈 수 없습니다." /> <input type="hidden"
 					id="nickDupleCheck" name="nickDupleCheck" value="N" />
 			</div>

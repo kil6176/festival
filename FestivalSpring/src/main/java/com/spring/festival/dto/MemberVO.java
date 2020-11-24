@@ -12,7 +12,17 @@ public class MemberVO
 	private String m_address;
 	private String m_joindate;
 	private String m_authority;
-	private String m_nick;
+	private String m_nickname;
+
+	public String getM_nickname()
+	{
+		return m_nickname;
+	}
+
+	public void setM_nickname(String m_nickname)
+	{
+		this.m_nickname = m_nickname;
+	}
 
 	public String getM_id()
 	{
@@ -104,14 +114,5 @@ public class MemberVO
 		this.m_authority = m_authority;
 	}
 
-	public String getM_nick()
-	{
-		return m_nick;
-	}
-
-	public void setM_nick(String m_nick)
-	{
-		this.m_nick = m_nick;
-	}
 
 }

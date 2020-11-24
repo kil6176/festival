@@ -1,10 +1,12 @@
 package com.spring.festival.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -39,7 +41,7 @@ public class HomeController
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = {RequestMethod.POST, RequestMethod.GET})
 	public String home(Locale locale, Model model) throws Exception
 	{
 
@@ -51,7 +53,7 @@ public class HomeController
 
 		return "home";
 	}
-	//모바일 지도
+	//모바일 지도 사이트 이동
 	@RequestMapping(value = "/mTrashMap", method = RequestMethod.GET)
 	public String mTrashMap() throws Exception
 	{
@@ -59,15 +61,42 @@ public class HomeController
 		return "mTrashMap";
 	}
 	
-	// 로그인 창으로 가기
+	// 로그인 사이트 이동
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() throws Exception
+	public String login(HttpSession session, HttpServletResponse response) throws Exception
 	{
 		logger.info("get login");
-		return "login";
+		if(session.getAttribute("member")==null)
+		{
+			return "login";
+		}
+		else
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('이미 로그인이 되어있습니다.');</script>");
+			out.flush();
+		    return "home";
 	}
 	
-	// 회원가입 get
+	//회원정보 사이트 이동
+	@RequestMapping(value = "/manager", method = RequestMethod.GET)
+	public String manager(HttpSession session, HttpServletResponse response) throws Exception
+	{
+		logger.info("manager");
+		if(session.getAttribute("member")!=null)
+		{
+			return "manager";
+		}
+		else
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('이 페이지는 로그인을 하셔야 합니다.');</script>");
+			out.flush();
+		    return "home";
+		    
+	}
+	
+	// 회원가입 사이트 이동
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String getRegister() throws Exception
 	{
@@ -75,7 +104,16 @@ public class HomeController
 		return "register";
 	}
 
-	// 회원가입 post
+	// 일반 지도 사이트 이동
+	@RequestMapping(value = "/trashMap", method = RequestMethod.GET)
+	public String trashMap(HttpSession session) throws Exception
+	{
+		logger.info("trashMap");
+
+		return "trashMap";
+	}
+	
+	// 회원가입 post니까 가입완료 할때
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception
 	{
@@ -144,8 +182,21 @@ public class HomeController
 
 		return result;
 	}
+	
+	// 패스워드 체크 post
+	@ResponseBody
+	@RequestMapping(value = "/passwordCheck", method = { RequestMethod.POST, RequestMethod.GET })
+	public int passwordCheck(MemberVO vo) throws Exception
+	{
+		logger.info("post passwordCheck");
 
-	// 로그인
+		int result = service.passwordCheck(vo);
+
+		return result;
+	}
+	
+
+	// 로그인 확인 버튼 누르면
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception
 	{
@@ -168,24 +219,18 @@ public class HomeController
 			return "redirect:/";
 
 	}
-
+	
+	//로그아웃
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception
 	{
-
+		//세션지우기
 		session.invalidate();
 
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/trashMap", method = RequestMethod.GET)
-	public String trashMap(HttpSession session) throws Exception
-	{
-		logger.info("trashMap");
-
-		return "trashMap";
-	}
-	
+	//쓰레기통 불러오기
 	@ResponseBody
 	@RequestMapping(value = "/trashCanSearch", method = { RequestMethod.POST, RequestMethod.GET})
 	public List<TrashVO> trashCanSearch(TrashVO vo) throws Exception
@@ -196,6 +241,52 @@ public class HomeController
 		return trashCanList;
 	}
 	
+	// 회원정보 업데이트 post
+	@ResponseBody
+	@RequestMapping(value = "/infoChange", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	public String postInfoChange(MemberVO vo, HttpSession session, HttpServletRequest req, RedirectAttributes rttr) throws Exception
+	{
+		final int PASSWORD_OK = 1; 
+		final int UPDATE_OK = 1; 
+		logger.info("post infoChange");
+				try
+				{	
+					if(service.passwordCheck(vo) == PASSWORD_OK) 
+					{
+						if(service.infoChange(vo) == UPDATE_OK)
+						{
+							session.invalidate();
+						    return "<script>"
+					         + "alert(\"회원정보가 바꼈습니다. 다시 로그인 해주세요\");"
+					         + "location.href=\"/\";"
+					         + "</script>";
+						}
+						
+						else 	
+						{
+						    return "<script>"
+							         + "alert(\"변경에 실패하였습니다.\");"
+							    + "</script>";
+						}
+						
+					}
+					
+					
+					else
+					{
+					    return "<script>"
+						         + "alert(\"비정상적인 방법이거나 패스워드가 틀립니다.\");"
 
-	
+					         + "history.back();"
+						    + "</script>";
+					}
+					
+				}
+				catch (Exception e)
+				{
+					throw new RuntimeException();
+
+				}
+		
+	}
 }

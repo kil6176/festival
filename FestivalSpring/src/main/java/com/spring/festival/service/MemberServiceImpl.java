@@ -42,4 +42,16 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO login(MemberVO vo) throws Exception {
 		return dao.login(vo);
 	}
+	
+	@Override
+	public int infoChange(MemberVO vo) throws Exception {
+		return dao.infoChange(vo);
+	}
+	
+
+	@Override
+	public int passwordCheck(MemberVO vo) throws Exception {
+		int result = dao.passwordCheck(vo);
+		return result;
+	}
 }

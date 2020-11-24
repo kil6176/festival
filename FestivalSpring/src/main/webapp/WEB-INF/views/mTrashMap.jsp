@@ -214,6 +214,8 @@ ul {
 .searchInputBox{
 	height: 21.33px;
 	width:110px;
+	top:25px;
+	position:relative;
 }
 
 .option{
@@ -286,7 +288,7 @@ ul {
 		</div>
 		
 		<div id="festival-list" class="displayNone" style="overflow-y:scroll; height:70%;" align="center">
-			<div style="z-index:100; background-color:white; width:100%; height:50px;" align='right'>
+			<div style="z-index:100; border-bottom:1px solid black; background-color:white; width:100%; height:50px;" align='right'>
   				<span id="listExit">
   					<span class="fas fa-times" style="display:inline-block; margin-top: 4px; height:80%; width:50px;"></span>
   				</span>
@@ -393,21 +395,18 @@ ul {
 		  	</div>
   		</div>
   		<div class="gonggan-search-bar" style="width:100%; height:100%;">
-  			<div style="height:50px; border: 1px solid black; overflow:hidden;">
+  			<div style="height:50px;  background-color: honeydew; border: 1px solid black; overflow:hidden;">
   				<span id="searchExit">
-  					<span class="fas fa-chevron-left" style="display:inline-block; margin-top: 7px; height:70%; width:50px;"></span>
+  					<a href="#" style="color:black;"><span class="fas fa-chevron-left" style="display:inline-block; margin-top: 7px; height:70%; width:50px;"></span></a>
   				</span>
-	  			<span id="dateSearchBtn">
-					<span  class="fa fa-search" style="display:inline-block; float:right; margin-top: 7px; height:70%; width:50px;"></span>
-				</span>
   			</div>
   			<div id="dateOption">
 	  			<div class="border-none-top" style="height:60px;" align="center">
 	  				<p style="margin:0; height:40px;  font-size:30px;">지역</p>
 	  				<p style="margin:0; height:20px; font-size:1rem">▼</p>
 	  			</div>
-	  			<div class="border-none-top" style="height:60px;" align="center">
-	  				<div style="margin-top:3px;">
+	  			<div class="border-none-top" style="height:110px; background-color: honeydew;" align="center">
+	  				<div style="">
 						<select class="areacode searchInputBox" style="font-size: 1.5rem; overflow-y:scroll; width:40%;  height:55px;">
 							<option value="" >지역 선택</option>
 						</select>
@@ -423,11 +422,16 @@ ul {
 	  				<p style="margin:0; height:20px; font-size:1rem">▼</p>
 	  			</div>
 	  			
-	  			<div class="border-none-top" style="height:60px;" align="center">
-	  				<div style="margin-top:3px;">
+	  			<div class="border-none-top" style="background-color: honeydew;height:110px;" align="center">
+	  				<div style="">
 						<input type="date" id="startDate" class="searchInputBox"  name="startDate" value="" autocomplete="off" style="font-size: 1.2rem; overflow-y:scroll; width:40%; height:55px;">
 						<input type="date" id="endDate" class="searchInputBox"  name="endDate" value="" autocomplete="off" style="font-size: 1.2rem; overflow-y:scroll; width:40%; height:55px;">
 	  				</div>
+	  			</div>
+	  			<div  class="border-none-top" style="height:60px;">
+		  			<span id="dateSearchBtn">
+						<a href="#" style="color:black;"><span  class="fa fa-search" style="display:inline-block; float:right; margin-top: 7px; height:45px; width:100%;"></span></a>
+					</span>
 	  			</div>
   			</div>
   			

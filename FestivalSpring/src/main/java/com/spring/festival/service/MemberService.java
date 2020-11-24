@@ -14,4 +14,9 @@ public interface MemberService {
     public int nickDupleCheck(MemberVO vo) throws Exception;
     
     public MemberVO login(MemberVO vo) throws Exception;
+
+	public int infoChange(MemberVO vo) throws Exception;;
+
+    public int passwordCheck(MemberVO vo) throws Exception;
+    
 }

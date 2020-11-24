@@ -52,4 +52,18 @@ public class MemberDAOImpl implements MemberDAO
 		return sqlSession.selectOne(Namespace + ".login", vo);
 	}
 
+	// 회원정보 변경
+	@Override
+	public int infoChange(MemberVO vo) throws Exception
+	{
+		return sqlSession.update(Namespace + ".infoChange", vo);
+	}
+	
+	//패스워드 체크
+	@Override
+	public int passwordCheck(MemberVO vo) throws Exception
+	{
+		int result = sqlSession.selectOne(Namespace + ".passwordCheck", vo);
+		return result;
+	}
 }

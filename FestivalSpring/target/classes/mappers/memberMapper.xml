@@ -14,7 +14,7 @@
      </select>
      
      <select id="nickDupleCheck" resultType="int">
-        SELECT COUNT(*) FROM member where m_nickname = #{m_nick}
+        SELECT COUNT(*) FROM member where m_nickname = #{m_nickname}
      </select>
 
     <!-- 로그인 -->
@@ -22,14 +22,31 @@
 		SELECT * FROM member WHERE m_id = #{m_id} AND m_pw = sha2(#{m_pw},512)
 	</select>
 	
+	<!-- 현재 패스워드 체크 -->
+	<select id="passwordCheck" resultType="int" >
+		SELECT COUNT(*) FROM member WHERE m_id = #{m_id} AND m_pw = sha2(#{m_pw},512)
+	</select>
+	
+	<!--회원가입-->
      <insert id="insertMember">
      			INSERT INTO member(m_id, m_pw, m_name, m_nickname, m_phonenum, m_email, m_birth) 
      							VALUES(    #{m_id} 
 				                 		 , sha2(#{m_pw},512)
 				                 		 , #{m_name}
-				                 		 , #{m_nick}
+				                 		 , #{m_nickname}
 				                 		 , #{m_phoneNum}
 				                 		 , #{m_email}
 				                 		 , #{m_birth})
      </insert>
+
+	<!--회원정보 업데이트-->
+	<update id="infoChange">
+		UPDATE member SET m_name = #{m_name}
+		, m_nickname = #{m_nickname}
+		,  m_email = #{m_email}
+		, m_phonenum = #{m_phoneNum}
+		, m_address = #{m_address}
+		, m_birth = #{m_birth}
+		WHERE m_id = #{m_id}
+	</update>
 </mapper>
