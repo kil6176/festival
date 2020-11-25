@@ -16,7 +16,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#logoutBtn").on("click", function(){
-			location.href="/logout";
+			location.href="/logout.do";
 		})
 		
 	})
@@ -36,15 +36,15 @@
 					</c:when>
 				</c:choose>
 				<br>
-				<a href="/register">가입페이지</a>
+				<a href="/register.do">가입페이지</a>
 				<br>
-				<a href="/login">로그인페이지</a>
+				<a href="/login.do">로그인페이지</a>
 				<br>
-				<a href="/trashMap">지도 페이지</a>
+				<a href="/trashMap.do">지도 페이지</a>
 				<br>
-				<a href="/mTrashMap">모바일 지도 페이지</a>
+				<a href="/mTrashMap.do">모바일 지도 페이지</a>
 				<br>
-				<a href="/manager">마이 페이지 겸 관리 페이지</a>
+				<a href="/manager.do">마이 페이지 겸 관리 페이지</a>
 			</div>
 	</form>
 </body>

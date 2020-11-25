@@ -34,7 +34,7 @@
 			{
 				$("#idDupleCheck").attr("value", "N");
 				$.ajax({
-					url : "/idDupleCheck",
+					url : "/idDupleCheck.do",
 					type : "post",
 					dataType : "json",
 					data : {"m_id" : $("#m_id").val()},
@@ -86,7 +86,7 @@
 			{
 				$("#nickDupleCheck").attr("value", "N");
 				$.ajax({
-					url : "/nickDupleCheck",
+					url : "/nickDupleCheck.do",
 					type : "post",
 					dataType : "json",
 					data : {"m_nickname" : $("#m_nickname").val()},
@@ -310,7 +310,7 @@
 	</script>
 <body>
 	<section id="container" style="max-width: 500px; margin: auto;">
-		<form action="/register" method="post">
+		<form action="/register.do" method="post">
 			<div align="center">
 				<img style="max-width: 100%;" src="/resources/images/banner/banner.png" />
 			</div>

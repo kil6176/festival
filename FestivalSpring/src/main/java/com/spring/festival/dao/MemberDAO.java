@@ -1,12 +1,14 @@
 package com.spring.festival.dao;
 
 import java.util.List;
- 
+
 import com.spring.festival.dto.MemberVO;
+import com.spring.festival.dto.TrashVO;
+import com.spring.festival.dto.CommonDTO;
  
 public interface MemberDAO {
     
-    public List<MemberVO> selectMember() throws Exception;
+    public List<MemberVO> selectMember(MemberVO vo) throws Exception;
     
     //회원가입
     public void register(MemberVO vo) throws Exception;
@@ -23,7 +25,18 @@ public interface MemberDAO {
     //회원정보 변경
     public int infoChange(MemberVO vo) throws Exception;
 
-    //닉네임 중복체크
+    //패스워드 맞는지 체크
     public int passwordCheck(MemberVO vo) throws Exception;
+
+    //패스워드 변경
+    public int passwordChange(MemberVO vo) throws Exception;
+    
+	//유저 수 체크
+	public int getUserCnt(MemberVO vo) throws Exception;
+	
+    //권한 변경
+    public int authorityChange(MemberVO vo) throws Exception;
+
+
 }
  

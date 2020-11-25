@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.spring.festival.dto.MemberVO;
+import com.spring.festival.dto.CommonDTO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO
@@ -19,10 +20,10 @@ public class MemberDAOImpl implements MemberDAO
 	private static final String Namespace = "com.spring.festival.mapper.memberMapper";
 
 	@Override
-	public List<MemberVO> selectMember() throws Exception
+	public List<MemberVO> selectMember(MemberVO vo) throws Exception
 	{
 
-		return sqlSession.selectList(Namespace + ".selectMember");
+		return sqlSession.selectList(Namespace + ".selectMember", vo);
 	}
 
 	@Override
@@ -66,4 +67,27 @@ public class MemberDAOImpl implements MemberDAO
 		int result = sqlSession.selectOne(Namespace + ".passwordCheck", vo);
 		return result;
 	}
+	
+	//패스워드 체크
+	@Override
+	public int passwordChange(MemberVO vo) throws Exception
+	{
+		int result = sqlSession.update(Namespace + ".passwordChange", vo);
+		return result;
+	}
+	
+	//유저 수 체크
+	@Override
+	public int getUserCnt(MemberVO vo) throws Exception
+	{
+		return sqlSession.selectOne(Namespace + ".getUserCnt", vo);
+	}	
+	
+	//권한 변경
+	@Override
+	public int authorityChange(MemberVO vo) throws Exception
+	{
+		return sqlSession.selectOne(Namespace + ".authorityChange", vo);
+	}
+
 }

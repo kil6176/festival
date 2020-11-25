@@ -85,7 +85,7 @@
 		var contentData = {"contentID" : contentID};
 		removeCanMarker();
         $.ajax({
-			url: "/trashCanSearch",
+			url: "/trashCanSearch.do",
             type: "POST",
 			data : {"fc_num" : contentID},
             dataType: 'json',

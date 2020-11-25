@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,17 +19,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.festival.common.ResultUtil;
+import com.spring.festival.dto.ManagerVO;
 import com.spring.festival.dto.MemberVO;
 import com.spring.festival.dto.TrashVO;
 import com.spring.festival.service.MemberService;
 import com.spring.festival.service.TrashService;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController
 {
+	final int PASSWORD_OK = 1;
+	final int UPDATE_OK = 1;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -41,63 +43,60 @@ public class HomeController
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = {RequestMethod.POST, RequestMethod.GET})
-	public String home(Locale locale, Model model) throws Exception
+	@RequestMapping(value = "/", method = { RequestMethod.POST, RequestMethod.GET })
+	public String home() throws Exception
 	{
 
 		logger.info("home");
 
-		List<MemberVO> memberList = service.selectMember();
-
-		model.addAttribute("memberList", memberList);
-
 		return "home";
 	}
-	//모바일 지도 사이트 이동
-	@RequestMapping(value = "/mTrashMap", method = RequestMethod.GET)
+
+	// 모바일 지도 사이트 이동
+	@RequestMapping(value = "/mTrashMap.do", method = RequestMethod.GET)
 	public String mTrashMap() throws Exception
 	{
 		logger.info("get mTrashMap");
 		return "mTrashMap";
 	}
-	
+
 	// 로그인 사이트 이동
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String login(HttpSession session, HttpServletResponse response) throws Exception
 	{
 		logger.info("get login");
-		if(session.getAttribute("member")==null)
+		if (session.getAttribute("member") == null)
 		{
 			return "login";
 		}
 		else
 			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('이미 로그인이 되어있습니다.');</script>");
-			out.flush();
-		    return "home";
+		PrintWriter out = response.getWriter();
+		out.println("<script>alert('이미 로그인이 되어있습니다.');</script>");
+		out.flush();
+		return "home";
 	}
-	
-	//회원정보 사이트 이동
-	@RequestMapping(value = "/manager", method = RequestMethod.GET)
+
+	// 회원정보 사이트 이동
+	@RequestMapping(value = "/manager.do", method = RequestMethod.GET)
 	public String manager(HttpSession session, HttpServletResponse response) throws Exception
 	{
 		logger.info("manager");
-		if(session.getAttribute("member")!=null)
+		if (session.getAttribute("member") != null)
 		{
 			return "manager";
 		}
 		else
 			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('이 페이지는 로그인을 하셔야 합니다.');</script>");
-			out.flush();
-		    return "home";
-		    
+		PrintWriter out = response.getWriter();
+		out.println("<script>alert('이 페이지는 로그인을 하셔야 합니다.');</script>");
+		out.flush();
+		return "home";
+
 	}
-	
+
 	// 회원가입 사이트 이동
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
 	public String getRegister() throws Exception
 	{
 		logger.info("get register");
@@ -112,9 +111,9 @@ public class HomeController
 
 		return "trashMap";
 	}
-	
+
 	// 회원가입 post니까 가입완료 할때
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception
 	{
 		logger.info("post register");
@@ -161,7 +160,7 @@ public class HomeController
 
 	// 아이디 체크 post
 	@ResponseBody
-	@RequestMapping(value = "/idDupleCheck", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/idDupleCheck.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public int idDupleCheck(MemberVO vo) throws Exception
 	{
 		logger.info("post idDupleCheck");
@@ -173,7 +172,7 @@ public class HomeController
 
 	// 닉네임 체크 post
 	@ResponseBody
-	@RequestMapping(value = "/nickDupleCheck", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/nickDupleCheck.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public int nickDupleCheck(MemberVO vo) throws Exception
 	{
 		logger.info("post nickDupleCheck");
@@ -182,10 +181,10 @@ public class HomeController
 
 		return result;
 	}
-	
+
 	// 패스워드 체크 post
 	@ResponseBody
-	@RequestMapping(value = "/passwordCheck", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/passwordCheck.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public int passwordCheck(MemberVO vo) throws Exception
 	{
 		logger.info("post passwordCheck");
@@ -194,10 +193,9 @@ public class HomeController
 
 		return result;
 	}
-	
 
 	// 로그인 확인 버튼 누르면
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception
 	{
 		logger.info("post login");
@@ -214,25 +212,25 @@ public class HomeController
 			session.setAttribute("member", login);
 
 		if (session.getAttribute("member") == null)
-			return "redirect:/login";
+			return "redirect:/login.do";
 		else
 			return "redirect:/";
 
 	}
-	
-	//로그아웃
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+
+	// 로그아웃
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception
 	{
-		//세션지우기
+		// 세션지우기
 		session.invalidate();
 
 		return "redirect:/";
 	}
-	
-	//쓰레기통 불러오기
+
+	// 쓰레기통 불러오기
 	@ResponseBody
-	@RequestMapping(value = "/trashCanSearch", method = { RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/trashCanSearch.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public List<TrashVO> trashCanSearch(TrashVO vo) throws Exception
 	{
 		logger.info("trashCanSearch");
@@ -240,53 +238,118 @@ public class HomeController
 		List<TrashVO> trashCanList = trashService.searchTrashCan(vo);
 		return trashCanList;
 	}
-	
+
 	// 회원정보 업데이트 post
 	@ResponseBody
-	@RequestMapping(value = "/infoChange", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
-	public String postInfoChange(MemberVO vo, HttpSession session, HttpServletRequest req, RedirectAttributes rttr) throws Exception
+	@RequestMapping(value = "/infoChange.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	public String postInfoChange(MemberVO vo, HttpSession session, HttpServletRequest req, RedirectAttributes rttr)
+			throws Exception
 	{
-		final int PASSWORD_OK = 1; 
-		final int UPDATE_OK = 1; 
 		logger.info("post infoChange");
-				try
-				{	
-					if(service.passwordCheck(vo) == PASSWORD_OK) 
-					{
-						if(service.infoChange(vo) == UPDATE_OK)
-						{
-							session.invalidate();
-						    return "<script>"
-					         + "alert(\"회원정보가 바꼈습니다. 다시 로그인 해주세요\");"
-					         + "location.href=\"/\";"
-					         + "</script>";
-						}
-						
-						else 	
-						{
-						    return "<script>"
-							         + "alert(\"변경에 실패하였습니다.\");"
-							    + "</script>";
-						}
-						
-					}
-					
-					
-					else
-					{
-					    return "<script>"
-						         + "alert(\"비정상적인 방법이거나 패스워드가 틀립니다.\");"
-
-					         + "history.back();"
-						    + "</script>";
-					}
-					
-				}
-				catch (Exception e)
+		try
+		{
+			if (service.passwordCheck(vo) == PASSWORD_OK)
+			{
+				if (service.infoChange(vo) == UPDATE_OK)
 				{
-					throw new RuntimeException();
-
+					session.invalidate();
+					return "<script>" + "alert(\"회원정보가 바꼈습니다. 다시 로그인 해주세요\");" + "location.href=\"/\";" + "</script>";
 				}
-		
+
+				else
+				{
+					return "<script>" + "alert(\"변경에 실패하였습니다.\");" + "</script>";
+				}
+
+			}
+
+			else
+			{
+				return "<script>" + "alert(\"비정상적인 방법이거나 패스워드가 틀립니다.\");"
+
+						+ "history.back();" + "</script>";
+			}
+
+		}
+		catch (Exception e)
+		{
+			throw new RuntimeException();
+
+		}
+
 	}
+	
+	// 비밀번호 변경 업데이트 post
+	@ResponseBody
+	@RequestMapping(value = "/passwordChange.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	public String postPasswordChange(MemberVO vo, HttpSession session, HttpServletRequest req, RedirectAttributes rttr)
+			throws Exception
+	{
+		logger.info("post PasswordChange");
+		try
+		{
+			if (service.passwordCheck(vo) == PASSWORD_OK)
+			{
+				if (service.passwordChange(vo) == UPDATE_OK)
+				{
+					session.invalidate();
+					return "<script>" + "alert(\"비밀번호가 바꼈습니다. 다시 로그인 해주세요\");" + "location.href=\"/\";" + "</script>";
+				}
+
+				else
+				{
+					return "<script>" + "alert(\"변경에 실패하였습니다.\");" + "</script>";
+				}
+
+			}
+
+			else
+			{
+				return "<script>" + "alert(\"비정상적인 방법이거나 패스워드가 틀립니다.\");"
+
+						+ "history.back();" + "</script>";
+			}
+
+		}
+		catch (Exception e)
+		{
+			throw new RuntimeException();
+		}
+
+	}
+	
+	// 유저 목록 조회
+	@RequestMapping(value = "/getUserList.do")
+	@ResponseBody
+	public ResultUtil getBoardList(HttpServletRequest request, HttpServletResponse response, MemberVO vo) throws Exception {
+
+		ResultUtil resultUtils = service.getUserList(vo);
+
+		return resultUtils;
+	}
+	
+	
+	// 비밀번호 변경 업데이트 post
+	@ResponseBody
+	@RequestMapping(value = "/authorityChange.do", method ={RequestMethod.POST, RequestMethod.GET })
+	public int authorityChange(MemberVO vo, HttpSession session, HttpServletRequest req, RedirectAttributes rttr)
+			throws Exception
+	{
+		logger.info("post authorityChange");
+		int result = service.authorityChange(vo);
+		System.out.print("result임"+result);
+		return result;
+	}
+			
+	// 유저 목록 조회
+	//@RequestMapping(value = "/getFestivalList.do")
+	//@ResponseBody
+	//public ResultUtil getFestivalList(HttpServletRequest request, HttpServletResponse response, ManagerVO vo) throws Exception {
+
+		//ResultUtil resultUtils = service.getFestivalList(vo);
+
+		//return resultUtils;
+	//}
+
+	
 }

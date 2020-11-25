@@ -1,6 +1,6 @@
 package com.spring.festival.dto;
 
-public class MemberVO
+public class MemberVO extends CommonDTO
 {
 
 	private String m_id;
@@ -13,6 +13,28 @@ public class MemberVO
 	private String m_joindate;
 	private String m_authority;
 	private String m_nickname;
+	private String searchKeyword;
+	private String newPassword;
+
+	public String getSearchKeyword()
+	{
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword)
+	{
+		this.searchKeyword = searchKeyword;
+	}
+
+	public String getNewPassword()
+	{
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword)
+	{
+		this.newPassword = newPassword;
+	}
 
 	public String getM_nickname()
 	{

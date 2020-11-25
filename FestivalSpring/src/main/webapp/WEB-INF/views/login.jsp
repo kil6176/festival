@@ -18,7 +18,7 @@
 	</script>
 	<body>
 		<section id="container-fluid" style="max-width:500px; margin:auto;">
-			<form action="/login" method="post">
+			<form action="/login.do" method="post">
 				<div align="center"><img style="max-width:100%;" src="/resources/images/banner/banner.png" /></div>
 				<div class="form-group has-feedback" style="margin-bottom:7px;">
 					<label class="control-label" for="m_id"></label>
@@ -40,7 +40,7 @@
 				
 				</div>
 				<div style="width:100%; text-align:center;">
-						<a href="/register"> 회원가입 </a>
+						<a href="/register.do"> 회원가입 </a>
 						&nbsp&nbsp|&nbsp&nbsp
 						<a class=""> 아이디 찾기 </a>
 						&nbsp&nbsp|&nbsp&nbsp

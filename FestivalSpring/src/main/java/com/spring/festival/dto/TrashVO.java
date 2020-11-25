@@ -1,6 +1,7 @@
 package com.spring.festival.dto;
 
-public class TrashVO {
+public class TrashVO  extends CommonDTO
+{
 
 	private int t_id;
 	private double x;
@@ -8,7 +9,17 @@ public class TrashVO {
 	private int fc_num;
 	private double t_can_height;
 	private int t_height;
+	private String fc_name;
+
 	
+	public String getFc_name()
+	{
+		return fc_name;
+	}
+	public void setFc_name(String fc_name)
+	{
+		this.fc_name = fc_name;
+	}
 	public int getT_id()
 	{
 		return t_id;
