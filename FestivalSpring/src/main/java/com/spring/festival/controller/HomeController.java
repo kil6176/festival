@@ -23,6 +23,7 @@ import com.spring.festival.common.ResultUtil;
 import com.spring.festival.dto.ManagerVO;
 import com.spring.festival.dto.MemberVO;
 import com.spring.festival.dto.TrashVO;
+import com.spring.festival.service.ManagerService;
 import com.spring.festival.service.MemberService;
 import com.spring.festival.service.TrashService;
 
@@ -36,6 +37,9 @@ public class HomeController
 
 	@Inject
 	private MemberService service;
+	
+	@Inject
+	private ManagerService managerService;
 
 	@Inject
 	private TrashService trashService;
@@ -341,15 +345,36 @@ public class HomeController
 		return result;
 	}
 			
-	// 유저 목록 조회
-	//@RequestMapping(value = "/getFestivalList.do")
-	//@ResponseBody
-	//public ResultUtil getFestivalList(HttpServletRequest request, HttpServletResponse response, ManagerVO vo) throws Exception {
+	// 축제 목록 조회
+	@RequestMapping(value = "/getFestivalList.do")
+	@ResponseBody
+	public ResultUtil getFestivalList(HttpServletRequest request, HttpServletResponse response, ManagerVO vo) throws Exception {
 
-		//ResultUtil resultUtils = service.getFestivalList(vo);
+		ResultUtil resultUtils = managerService.getFestivalList(vo);
 
-		//return resultUtils;
-	//}
+		return resultUtils;
+	}
+
+	// 쓰레기통 개수 체크 post
+	@ResponseBody
+	@RequestMapping(value = "/getTrashCanCnt.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public int getTrashCnt(ManagerVO vo) throws Exception
+	{
+		logger.info("post getTrashCanCnt");
+
+		int result = managerService.getTrashCanCnt(vo);
+
+		return result;
+	}
 
 	
+	// 축제 목록 조회
+	@RequestMapping(value = "/getTrashCanList.do")
+	@ResponseBody
+	public ResultUtil selectTrashList(HttpServletRequest request, HttpServletResponse response, ManagerVO vo) throws Exception {
+	
+	ResultUtil resultUtils = managerService.getTrashCanList(vo);
+	
+	return resultUtils;
+	}
 }

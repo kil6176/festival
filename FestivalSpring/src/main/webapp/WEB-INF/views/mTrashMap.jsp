@@ -231,7 +231,7 @@ ul {
 
 #sub_contents{
 	line-height: 20px;
-	font-size: 13px;
+	font-size: 16px;
 	color: #404040;
 	line-height: 1.6;
 	letter-spacing: 0.25px;
@@ -300,12 +300,11 @@ ul {
 		</div>
 		
 		<div id="sub_wrap" class="displayNone"  style="overflow-y:scroll; height:70%;" align="center">
-				<div id="sub_button" align="right">
-					<span id="trashBtn" class="fa-stack">
-						<i class="fas fa-trash fa-stack-1x" style="font-size:2.5em;"></i>
-						<i class="fas fas fa-search fa-stack-1x" style=" left:7px; top:9px; color:white; font-size:1.5em;"></i>
+				<div id="sub_button">
+					<span  class="fa-stack" style="width:100%; height:34px;">
+						<button id="trashBtn" style="height: 40px;width: 200px;margin-top: 0px;margin-left: 33px;bottom: 3px;display: inline;position: relative;">빈 쓰레기통 찾기</button>
+						<i id="hiddenBtn" class="fas fa-times hiddenBtn" style="margin-left: 7px;float: right;font-size: 2.6em;bottom: 5px;position: relative;"></i>
 					</span>
-					<i id="hiddenBtn" class="fas fa-times" style="margin-left:7px; font-size:2.6em;"></i>
 				</div>
 				<hr>
 				<div id="sub_info">
@@ -395,7 +394,7 @@ ul {
 		  	</div>
   		</div>
   		<div class="gonggan-search-bar" style="width:100%; height:100%;">
-  			<div style="height:50px;  background-color: honeydew; border: 1px solid black; overflow:hidden;">
+  			<div style="height:50px; border: 1px solid black; overflow:hidden;">
   				<span id="searchExit">
   					<a href="#" style="color:black;"><span class="fas fa-chevron-left" style="display:inline-block; margin-top: 7px; height:70%; width:50px;"></span></a>
   				</span>
@@ -405,7 +404,7 @@ ul {
 	  				<p style="margin:0; height:40px;  font-size:30px;">지역</p>
 	  				<p style="margin:0; height:20px; font-size:1rem">▼</p>
 	  			</div>
-	  			<div class="border-none-top" style="height:110px; background-color: honeydew;" align="center">
+	  			<div class="border-none-top" style="height:110px; " align="center">
 	  				<div style="">
 						<select class="areacode searchInputBox" style="font-size: 1.5rem; overflow-y:scroll; width:40%;  height:55px;">
 							<option value="" >지역 선택</option>
@@ -422,7 +421,7 @@ ul {
 	  				<p style="margin:0; height:20px; font-size:1rem">▼</p>
 	  			</div>
 	  			
-	  			<div class="border-none-top" style="background-color: honeydew;height:110px;" align="center">
+	  			<div class="border-none-top" style="height:110px;" align="center">
 	  				<div style="">
 						<input type="date" id="startDate" class="searchInputBox"  name="startDate" value="" autocomplete="off" style="font-size: 1.2rem; overflow-y:scroll; width:40%; height:55px;">
 						<input type="date" id="endDate" class="searchInputBox"  name="endDate" value="" autocomplete="off" style="font-size: 1.2rem; overflow-y:scroll; width:40%; height:55px;">
