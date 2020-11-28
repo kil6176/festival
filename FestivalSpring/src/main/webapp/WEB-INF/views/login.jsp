@@ -19,7 +19,7 @@
 	<body>
 		<section id="container-fluid" style="max-width:500px; margin:auto;">
 			<form action="/login.do" method="post">
-				<div align="center"><img style="max-width:100%;" src="/resources/images/banner/banner.png" /></div>
+				<div align="center"><a href="/"><img style="max-width:100%;" src="/resources/images/banner/banner.png" /></a></div>
 				<div class="form-group has-feedback" style="margin-bottom:7px;">
 					<label class="control-label" for="m_id"></label>
 					<input class="form-control" type="text" id="m_id" name="m_id" placeholder="아이디" style="height: 50px;"/>

@@ -320,7 +320,7 @@ function openZipSearch() {
 	<section id="container" style="max-width: 500px; margin: auto;">
 		<form action="/register.do" method="post">
 			<div align="center">
-				<img style="max-width: 100%;" src="/resources/images/banner/banner.png" />
+				<a href="/"><img style="max-width: 100%;" src="/resources/images/banner/banner.png" /></a>
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="m_id">아이디</label> 
