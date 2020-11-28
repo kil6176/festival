@@ -87,7 +87,7 @@ public class MemberDAOImpl implements MemberDAO
 	@Override
 	public int authorityChange(MemberVO vo) throws Exception
 	{
-		return sqlSession.selectOne(Namespace + ".authorityChange", vo);
+		return sqlSession.update(Namespace + ".authorityChange", vo);
 	}
 
 }
