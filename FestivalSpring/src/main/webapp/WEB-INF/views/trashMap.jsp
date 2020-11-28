@@ -18,6 +18,7 @@ var ratio = window.devicePixelRatio; if(ratio > 1)
 <script src="resources/js/subMenuScript.js"></script>
 <script src="resources/js/script.js"></script>
 <script src="resources/js/UIScript.js"></script>
+<script src="resources/js/jquery.ajax-cross-origin.min.js"></script>
 <script src="resources/js/all.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
