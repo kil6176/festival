@@ -15,7 +15,7 @@
 <script src="resources/js/mobile/jquery.ajax-cross-origin.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2020-10-27</title>
+<title>초록축제</title>
 <style>
 
 
@@ -438,6 +438,11 @@ ul {
 	  			<div class="border-none-top" style="height:110px;" align="center">
 	  				<p style="margin:0; height:50px;  font-size:30px;">축제명</p>
   					<input type="text" style="height: 50px; width:80%" id="keyword" name="keyword" value="">
+	  			</div>
+	  			<div  class="border-none-top" style="height:60px;">
+		  			<span id="nameSearchBtn">
+						<a href="#" style="color:black;"><span  class="fa fa-search" style="display:inline-block; float:right; margin-top: 7px; height:45px; width:100%;"></span></a>
+					</span>
 	  			</div>
   			</div>
   		</div>

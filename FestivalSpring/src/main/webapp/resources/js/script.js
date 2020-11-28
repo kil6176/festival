@@ -5,6 +5,8 @@ $(function () {
     $.ajax({
         type: "GET",
         dataType: 'xml',
+		crossOrigin: true,
+		proxy: "https://3.34.58.107/proxy.php",
         url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?"
          + "ServiceKey=j6LXjPijNQRYMD91nULBdKVcG4dB1UwKCSKNzdNF43iSdduDRIYm8t3RaktEga5bhfvKQ5yJj6o7EWMqGVF2NQ%3D%3D"
          + "&numOfRows=20"
@@ -50,7 +52,9 @@ $(function () {
         if (areaCode != "") {
             $.ajax({
                 type: "GET",
-                dataType: 'xml',
+                dataType: 'xml',		
+				crossOrigin: true,
+				proxy: "https://3.34.58.107/proxy.php",
                 url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?"
                  + "ServiceKey=j6LXjPijNQRYMD91nULBdKVcG4dB1UwKCSKNzdNF43iSdduDRIYm8t3RaktEga5bhfvKQ5yJj6o7EWMqGVF2NQ%3D%3D"
                  + "&areaCode=" + areaCode
@@ -160,6 +164,8 @@ $(function () {
 	        $.ajax({
 	            type: "GET",
 	            dataType: 'xml',
+				crossOrigin: true,
+				proxy: "https://3.34.58.107/proxy.php",
 	            url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?"
 	             + "ServiceKey=j6LXjPijNQRYMD91nULBdKVcG4dB1UwKCSKNzdNF43iSdduDRIYm8t3RaktEga5bhfvKQ5yJj6o7EWMqGVF2NQ%3D%3D"
 	             + "&eventStartDate=" + startDate
@@ -242,6 +248,8 @@ $(function () {
 			$.ajax({
 		            type: "GET",
 		            dataType: 'xml',
+					crossOrigin: true,
+					proxy: "https://3.34.58.107/proxy.php",
 		            url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword?"
 		             + "ServiceKey=j6LXjPijNQRYMD91nULBdKVcG4dB1UwKCSKNzdNF43iSdduDRIYm8t3RaktEga5bhfvKQ5yJj6o7EWMqGVF2NQ%3D%3D"
 		             + "&keyword=" + keyword

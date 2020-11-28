@@ -19,7 +19,15 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>회원가입</title>
 </head>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
+function openZipSearch() {
+	new daum.Postcode({
+		oncomplete: function(data) {
+			$('#m_address').val(data.address);
+		}
+	}).open();
+}
 		$(document).ready(function(){
 			//정규식
 			var idPattern = /^[a-z0-9]{6,20}$/;
@@ -348,6 +356,12 @@
 			</div>
 			<div id="nickCheckText"></div>
 
+			<div class="form-group has-feedback">
+				<label class="control-label" for="m_address">주소</label> 
+				<input class="form-control" type="text" id="m_address" name="m_address" placeholder="검색을 누르셔서 도로명 주소를 가져오시고 세부사항을 적어주세요" />
+				<button type="button" style="width:100%; height:32px;" onclick="openZipSearch()">검색</button>
+			</div>
+			
 			<div class="form-group has-feedback">
 				<label class="control-label" for="m_phoneNum">핸드폰</label> 
 				<input class="form-control" type="text" id="m_phoneNum" name="m_phoneNum" placeholder="입력 시 -없이 입력 해주세요" />

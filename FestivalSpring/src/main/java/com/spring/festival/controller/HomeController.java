@@ -377,4 +377,26 @@ public class HomeController
 	
 	return resultUtils;
 	}
+	
+	//좌표 검색
+	@RequestMapping(value = "/searchLocation.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public String searchLocation() throws Exception
+	{
+
+		logger.info("searchLocation");
+
+		return "searchLocation";
+	}
+	
+	// 쓰레기통 추가
+	@RequestMapping(value = "/insertTrashCan.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int trashCanAdd(TrashVO vo) throws Exception
+	{
+		logger.info("post register");
+
+		int result = trashService.insertTrashCan(vo);
+		
+		return result;
+		}
 }

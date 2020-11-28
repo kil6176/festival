@@ -35,14 +35,15 @@
 	
 	<!--회원가입-->
      <insert id="insertMember">
-     			INSERT INTO member(m_id, m_pw, m_name, m_nickname, m_phonenum, m_email, m_birth) 
+     			INSERT INTO member(m_id, m_pw, m_name, m_nickname, m_phonenum, m_email, m_birth, m_address) 
      							VALUES(    #{m_id} 
 				                 		 , sha2(#{m_pw},512)
 				                 		 , #{m_name}
 				                 		 , #{m_nickname}
 				                 		 , #{m_phoneNum}
 				                 		 , #{m_email}
-				                 		 , #{m_birth})
+				                 		 , #{m_birth}
+										 , #{m_address})
      </insert>
 
 	<!--회원정보 업데이트-->

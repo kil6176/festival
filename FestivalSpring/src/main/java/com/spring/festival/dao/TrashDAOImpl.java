@@ -30,4 +30,11 @@ public class TrashDAOImpl implements TrashDAO
 		return sqlSession.selectList(Namespace + ".searchTrashCan", vo);
 	}
 	
+
+    //쓰레기통 추가하기
+	@Override
+    public int insertTrashCan(TrashVO vo) throws Exception
+	{
+		return sqlSession.insert(Namespace + ".insertTrashCan", vo);
+	}
 }

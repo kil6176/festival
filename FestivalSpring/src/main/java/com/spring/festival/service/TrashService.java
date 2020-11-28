@@ -8,4 +8,6 @@ public interface TrashService {
     public List<TrashVO> selectTrashCan() throws Exception;
 
     public List<TrashVO> searchTrashCan(TrashVO vo) throws Exception;
+
+    public int insertTrashCan(TrashVO vo) throws Exception;
 }

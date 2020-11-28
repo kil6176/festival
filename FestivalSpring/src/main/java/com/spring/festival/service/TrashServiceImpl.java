@@ -26,5 +26,9 @@ public class TrashServiceImpl implements TrashService {
        return result;
    }
    
+   @Override
+   public int insertTrashCan(TrashVO vo) throws Exception {
+       return dao.insertTrashCan(vo);
+   }
    
 }

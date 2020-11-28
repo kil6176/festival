@@ -13,4 +13,16 @@
      <select id="searchTrashCan" resultType="trashVO">
         select a.t_id, a.x, a.y, a.fc_num, b.t_can_height, b.t_height from trash_info a, trash_log b where a.fc_num = #{fc_num} and a.t_id = b.t_id and (b.t_id, b.t_update_time) in(select b.t_id, MAX(b.t_update_time) from trash_info a, trash_log b where a.fc_num = #{fc_num} group by t_id) order by b.t_update_time desc
      </select>
+
+	
+	<!--쓰레기통 추가-->
+     <insert id="insertTrashCan">
+		INSERT INTO trash_info(x, y, fc_num, fc_name, t_can_height) 
+				VALUES(    #{x} 
+                 		 , #{y}
+                 		 , #{fc_num}
+                 		 , #{fc_name}
+                 		 , #{t_can_height}
+					  )
+      </insert>
 </mapper>

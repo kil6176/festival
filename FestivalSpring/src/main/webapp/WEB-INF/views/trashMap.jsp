@@ -6,17 +6,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
+<script>
+var ratio = window.devicePixelRatio; if(ratio > 1)
+{ window.location.href = '/mTrashMap.do'; }
+</script>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script src="resources/js/subMenuScript.js"></script>
 <script src="resources/js/script.js"></script>
 <script src="resources/js/UIScript.js"></script>
 <script src="resources/js/all.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2020-10-27</title>
+<title>초록축제</title>
 <style>
+
 .hasDatepicker {
 	width :70px;
 }
@@ -426,6 +433,7 @@ display:inline-block; width:80%
 		};
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
 	</script>
 </body>
 </html>

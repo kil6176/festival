@@ -8,6 +8,8 @@
 		$.ajax({
             type: "GET",
             dataType: 'xml',
+			crossOrigin: true,
+			proxy: "https://3.34.58.107/proxy.php",
             url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?"
              + "ServiceKey=j6LXjPijNQRYMD91nULBdKVcG4dB1UwKCSKNzdNF43iSdduDRIYm8t3RaktEga5bhfvKQ5yJj6o7EWMqGVF2NQ%3D%3D"
              + "&contentTypeId=" + contentTypeId
@@ -45,6 +47,8 @@
 				var subInfo2 = $.ajax({
 		            type: "GET",
 		            dataType: 'xml',
+					crossOrigin: true,
+					proxy: "https://3.34.58.107/proxy.php",
 		            url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro?"
 		             + "ServiceKey=j6LXjPijNQRYMD91nULBdKVcG4dB1UwKCSKNzdNF43iSdduDRIYm8t3RaktEga5bhfvKQ5yJj6o7EWMqGVF2NQ%3D%3D"
 		             + "&contentTypeId=" + contentTypeId
