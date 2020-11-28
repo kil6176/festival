@@ -31,4 +31,21 @@ public class TrashServiceImpl implements TrashService {
        return dao.insertTrashCan(vo);
    }
    
+   @Override
+   public List<TrashVO> selectOneTrashCan(TrashVO vo) throws Exception {
+	   List<TrashVO>result = dao.selectOneTrashCan(vo);
+       return result;
+   }
+   
+   //쓰레기통 정보 변경
+   @Override
+   public int updateTrashCan(TrashVO vo) throws Exception {
+       return dao.updateTrashCan(vo);
+   }
+   
+   //쓰레기통 정보 삭제
+   @Override
+   public int deleteTrashCan(TrashVO vo) throws Exception {
+       return dao.deleteTrashCan(vo);
+   }
 }

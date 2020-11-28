@@ -25,4 +25,22 @@
                  		 , #{t_can_height}
 					  )
       </insert>
+
+     <select id="selectOneTrashCan" resultType="trashVO">
+        SELECT * FROM trash_info where t_id = #{t_id}
+     </select>
+
+	<!--쓰레기통 정보변경-->
+	<update id="updateTrashCan">
+		UPDATE trash_info SET x = #{x}
+		, y = #{y}
+		,  t_can_height = #{t_can_height}
+		WHERE t_id = #{t_id}
+	</update>
+	
+		<!--쓰레기통 정보변경-->
+	<delete id="deleteTrashCan">
+		DELETE FROM trash_info 
+		WHERE t_id = #{t_id}
+	</delete>
 </mapper>

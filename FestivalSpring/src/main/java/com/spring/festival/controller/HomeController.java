@@ -391,12 +391,50 @@ public class HomeController
 	// 쓰레기통 추가
 	@RequestMapping(value = "/insertTrashCan.do", method = RequestMethod.POST)
 	@ResponseBody
-	public int trashCanAdd(TrashVO vo) throws Exception
+	public int insertTrashCan(TrashVO vo) throws Exception
 	{
 		logger.info("post register");
 
 		int result = trashService.insertTrashCan(vo);
 		
 		return result;
-		}
+	}
+	
+	// 쓰레기통 정보변경
+	@RequestMapping(value = "/updateTrashCan.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int updateTrashCan(TrashVO vo) throws Exception
+	{
+		logger.info("post register");
+
+		int result = trashService.updateTrashCan(vo);
+		
+		return result;
+	}
+	
+	// 쓰레기통 삭제
+	@RequestMapping(value = "/deleteTrashCan.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int deleteTrashCan(TrashVO vo) throws Exception
+	{
+		logger.info("post register");
+
+		int result = trashService.deleteTrashCan(vo);
+		
+		return result;
+	}
+	
+	// 쓰레기통 상세정보 가져오기
+	@ResponseBody
+	@RequestMapping(value = "/selectOneTrashCan.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public List<TrashVO> trashCanDetail(TrashVO vo) throws Exception
+	{
+		logger.info("selectOneTrashCan");
+
+		List<TrashVO> trashCanList = trashService.selectOneTrashCan(vo);
+		return trashCanList;
+	}
+	
+	
+	
 }
