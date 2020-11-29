@@ -26,18 +26,18 @@
             <div class="service_area" align="right">
 				<c:choose>
 					<c:when test="${member == null}">
-                        <a href="/register.do">가입페이지</a>
+                        <a href="/register.do">회원 가입</a>
                         |
-                        <a href="/login.do">로그인페이지</a>
+                        <a href="/login.do">로그인</a>
                         |
-                        <a href="/trashMap.do">지도 페이지</a>
+                        <a href="/trashMap.do">지도로 가기</a>
 					</c:when>
 				
 					<c:when test="${member != null }">
 							<p>${member.m_id}님 환영 합니다.</p>
               	       	    <a href="/manager.do">마이 페이지</a>
               	       	    |
-							<a href="/trashMap.do">지도 페이지</a>
+                      		<a href="/trashMap.do">지도로 가기</a>
 							|
 							<a href="/logout.do">로그아웃</a>
 					</c:when>
@@ -165,7 +165,7 @@
                         style="color: #686868;">이용약관</a>|<a href="#" target="_self">개인정보처리방침</a>|<a href="#"
                         target="_self " style="color: #686868;">Q&A</a></h4>
                 <div>
-                    <span style="font-weight:bold;">축제미화팀</span><span style="color: #686868;"> 최혁진, 김경민, 김동현, 안상록 <span
+                    <span style="font-weight:bold;">축제미화팀</span><span style="color: #686868;"> 최혁진, 김경민, 김동현, 안상록, 이수현 <span
                             style="font-weight:bold; color: black;">축제정보</span> TourAPI<br />
                         인천광역시 동구 재능로 178(송림동 122번지) 인천재능대학교<br />
                         TEL 032-890-7000 | FAX 032-890-7065<br />
