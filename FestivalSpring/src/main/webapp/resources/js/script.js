@@ -252,7 +252,7 @@ $(function () {
 					proxy: "https://www.festvalcl.tk//proxy.php",
 		            url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword?"
 		             + "ServiceKey=j6LXjPijNQRYMD91nULBdKVcG4dB1UwKCSKNzdNF43iSdduDRIYm8t3RaktEga5bhfvKQ5yJj6o7EWMqGVF2NQ%3D%3D"
-		             + "&keyword=" + keyword
+		             + "&keyword=" + encodeURI(keyword)
 		             + "&areaCode=" + areaCode
 		             + "&sigunguCode=" + sigunguCode
 		             + "&cat1=A02"

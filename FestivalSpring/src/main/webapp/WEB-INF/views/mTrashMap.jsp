@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
 <script src="resources/js/mobile/subMenuScript.js"></script>
 <script src="resources/js/mobile/crossScript.js"></script>
 <script src="resources/js/mobile/UIScript.js"></script>
