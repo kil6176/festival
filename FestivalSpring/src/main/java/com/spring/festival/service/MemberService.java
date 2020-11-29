@@ -30,5 +30,11 @@ public interface MemberService {
     
     public int authorityChange(MemberVO vo) throws Exception;
 
+    //아이디 찾기
+    public List<MemberVO> selectFindID(MemberVO vo) throws Exception;
+    
+    //비밀번호 찾기 / 초기화
+    public String updateFindPW(MemberVO vo) throws Exception;
+
     
 }

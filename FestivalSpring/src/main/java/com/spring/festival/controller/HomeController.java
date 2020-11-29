@@ -435,6 +435,25 @@ public class HomeController
 		return trashCanList;
 	}
 	
+	// 아이디 찾기
+	@ResponseBody
+	@RequestMapping(value = "/selectFindID.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public List<MemberVO> selectFindID(MemberVO vo) throws Exception
+	{
+		logger.info("selectFindID");
+
+		List<MemberVO> id = service.selectFindID(vo);
+		return id;
+	}
 	
-	
+	// 아이디 찾기
+	@ResponseBody
+	@RequestMapping(value = "/updateFindPW.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public String updateFindPW(MemberVO vo) throws Exception
+	{
+		logger.info("updateFindPW");
+
+		String PW = service.updateFindPW(vo);
+		return PW;
+	}
 }

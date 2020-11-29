@@ -1,93 +1,51 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+
 <html>
-	<head>
+<head>
+	<title>Home</title>
 		<!-- 합쳐지고 최소화된 최신 CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<!-- 부가적인 테마 -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-	 	
-	 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<title>회원가입</title>
-	</head>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			// 취소
-			$(".cencle").on("click", function(){
-				
-				location.href = "/login";
-						    
-			})
-		
-			$("#submit").on("click", function(){
-				if($("#id").val()==""){
-					alert("아이디를 입력해주세요.");
-					$("#userId").focus();
-					return false;
-				}
-				if($("#password").val()==""){
-					alert("비밀번호를 입력해주세요.");
-					$("#userPass").focus();
-					return false;
-				}
-				if($("#name").val()==""){
-					alert("성명을 입력해주세요.");
-					$("#userName").focus();
-					return false;
-				}
-			});
-			
-				
-			
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 
+</head>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#logoutBtn").on("click", function(){
+			location.href="/logout.do";
 		})
-	</script>
-	<body>
-		<section id="container">
-			<form action="/register" method="post">
-				<div class="form-group has-feedback">
-					<label class="control-label" for="id">아이디</label>
-					<input class="form-control" type="text" id="id" name="id" />
-				</div>
-				<div class="form-group has-feedback">
-					<label class="control-label" for="password">패스워드</label>
-					<input class="form-control" type="password" id="password" name="password" />
-				</div>
-				<div class="form-group has-feedback">
-					<label class="control-label" for="name">이름</label>
-					<input class="form-control" type="text" id="name" name="name" />
-				</div>
-				
-				<div class="form-group has-feedback">
-					<label class="control-label" for="nick">닉네임</label>
-					<input class="form-control" type="text" id="nick" name="nick" />
-					
-				</div>
-				
-				<div class="form-group has-feedback">
-					<label class="control-label" for="phone">핸드폰</label>
-					<input class="form-control" type="text" id="phone" name="phone" />
-				</div>
-				
-				<div class="form-group has-feedback">
-					<label class="control-label" for="email">이메일</label>
-					<input class="form-control" type="text" id="email" name="email" />
-				</div>
-				
-				<div class="form-group has-feedback">
-					<label class="control-label" for="birth">생일</label>
-					<input class="form-control" type="date" id="birth" name="birth" />
-				</div>
-				
-				<div class="form-group has-feedback">
-					<button class="btn btn-success" type="submit" id="submit">회원가입</button>
-					<button class="cencle btn btn-danger" type="button">취소</button>
-				</div>
-			</form>
-		</section>
 		
-	</body>
+	})
+</script>
+<body>
+	<form name='homeForm' method="post" action="/login">
+			<div>
+			
+				<c:choose>
+					<c:when test="${member == null}">
+						<p>로그인 안 되어있음</p>
+					</c:when>
+				
+					<c:when test="${member != null }">
+							<p>${member.m_id}님 환영 합니다.</p>
+							<button id="logoutBtn" type="button">로그아웃</button>
+					</c:when>
+				</c:choose>
+				<br>
+				<a href="/register.do">가입페이지</a>
+				<br>
+				<a href="/login.do">로그인페이지</a>
+				<br>
+				<a href="/trashMap.do">지도 페이지</a>
+				<br>
+				<a href="/mTrashMap.do">모바일 지도 페이지</a>
+				<br>
+				<a href="/manager.do">마이 페이지 겸 관리 페이지</a>
+			</div>
+	</form>
+</body>
 </html>
-	</body>
-		
-		

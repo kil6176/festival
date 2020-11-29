@@ -90,4 +90,22 @@ public class MemberDAOImpl implements MemberDAO
 		return sqlSession.update(Namespace + ".authorityChange", vo);
 	}
 
+    //아이디 찾기
+    public List<MemberVO> selectFindID(MemberVO vo) throws Exception
+	{
+		return sqlSession.selectList(Namespace + ".selectFindID", vo);
+	}	
+
+
+    //비밀번호 찾기 / 초기화
+    public int updateFindPW(MemberVO vo) throws Exception
+    {
+		return sqlSession.update(Namespace + ".updateFindPW", vo);
+	}	
+
+    //비밀번호 찾기 / 초기화
+    public int selectFindPW(MemberVO vo) throws Exception
+    {
+		return sqlSession.selectOne(Namespace + ".selectFindPW", vo);
+	}	
 }

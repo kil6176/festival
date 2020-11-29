@@ -36,6 +36,15 @@ public interface MemberDAO {
 	
     //권한 변경
     public int authorityChange(MemberVO vo) throws Exception;
+    
+    //아이디 찾기
+    public List<MemberVO> selectFindID(MemberVO vo) throws Exception;
+    
+    //비밀번호 찾기 / 초기화
+    public int updateFindPW(MemberVO vo) throws Exception;
+    
+    //비밀번호 찾기 / 초기화
+    public int selectFindPW(MemberVO vo) throws Exception;
 
 
 }

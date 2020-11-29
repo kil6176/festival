@@ -2,6 +2,7 @@ package com.spring.festival.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import javax.inject.Inject;
 
@@ -16,6 +17,9 @@ import com.spring.festival.dto.TrashVO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
+	final int SELECT_OK = 1;
+	final int UPDATE_OK = 1;
+	final int DELETE_OK = 1;
 
    @Inject
    private MemberDAO dao;
@@ -110,6 +114,38 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 	
+
+    //아이디 찾기
+	@Override
+    public List<MemberVO> selectFindID(MemberVO vo) throws Exception
+    {
+		return dao.selectFindID(vo);
+		
+	}
 	
+
+	@Override
+    //비밀번호 찾기 / 초기화
+    public String updateFindPW(MemberVO vo) throws Exception
+    {
+		
+        char[] charaters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9','!', '@','#','$','%','^','&','*'};
+        StringBuilder sb = new StringBuilder("");
+        Random rn = new Random();
+        for( int i = 0 ; i < 10 ; i++ )
+        {
+            sb.append( charaters[ rn.nextInt( charaters.length ) ] );
+        }
+        if(dao.selectFindPW(vo) == SELECT_OK)
+        {
+        	String password = sb.toString();
+        	vo.setNewPassword(password);
+        	if(dao.passwordChange(vo) == UPDATE_OK)
+        	{
+        		return sb.toString();
+        	}
+        }
+		return "";
+    }
 	
 }
