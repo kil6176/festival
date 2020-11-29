@@ -292,7 +292,12 @@ display:inline-block; width:80%
 	<div class="map_wrap">
 		<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 			<div id="menu_wrap" class="bg_white">
+				<div align="center" style="overflow:hidden;">
+					<span id="dateSearch" style="float:left;" class="searchList searchListClick">기간으로 검색</span>
+					<span id="nameSearch" style="float:right;" class="searchList">축제 명으로 검색</span>
+				</div>
 				<div id="dateOption" class="option">
+					
 						<table style="margin-left: auto; margin-right: auto; border-spacing: 0 5px;">
 							<tr>
 								<th style="margin: 50px;" >지역</th>
@@ -329,6 +334,7 @@ display:inline-block; width:80%
 							</tr>
 					</table>
 				</div>
+				<hr>
 				
 				<div id="nameOption" class="option optionHidden">
 						<table style="margin-left: auto; margin-right: auto; border-spacing: 0 5px;">
@@ -347,11 +353,6 @@ display:inline-block; width:80%
 								</td>
 							</tr>
 					</table>
-				</div>
-				
-				<div align="center" style="overflow:hidden;">
-					<span id="dateSearch" style="float:left;" class="searchList searchListClick">기간으로 검색</span>
-					<span id="nameSearch" style="float:right;" class="searchList">축제 명으로 검색</span>
 				</div>
 				
 				<ul id="placesList"></ul>
