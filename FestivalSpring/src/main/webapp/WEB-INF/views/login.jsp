@@ -8,9 +8,9 @@
 		<!-- 부가적인 테마 -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	 	
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 		<title>로그인</title>
 		
 		
