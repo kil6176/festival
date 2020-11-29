@@ -334,7 +334,6 @@ display:inline-block; width:80%
 							</tr>
 					</table>
 				</div>
-				<hr>
 				
 				<div id="nameOption" class="option optionHidden">
 						<table style="margin-left: auto; margin-right: auto; border-spacing: 0 5px;">
@@ -354,7 +353,7 @@ display:inline-block; width:80%
 							</tr>
 					</table>
 				</div>
-				
+				<hr>
 				<ul id="placesList"></ul>
 				
 				<div id="pagination"></div>
