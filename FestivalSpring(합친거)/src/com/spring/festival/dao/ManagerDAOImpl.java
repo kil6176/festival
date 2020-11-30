@@ -60,4 +60,20 @@ public class ManagerDAOImpl implements ManagerDAO
 	{
 		return sqlSession.selectList(Namespace + ".getTrashCanList", vo);
 	}	
+
+
+	@Override
+	//유저 축제 정보 추가
+	public int addUserFestival(ManagerVO vo) throws Exception
+	{
+		return sqlSession.insert(Namespace + ".addUserFestival", vo);
+	}	
+	
+	@Override
+	//유저 축제 정보 삭제
+	public int deleteUserFestival(ManagerVO vo) throws Exception
+	{
+		return sqlSession.delete(Namespace + ".deleteUserFestival", vo);
+	}	
+
 }

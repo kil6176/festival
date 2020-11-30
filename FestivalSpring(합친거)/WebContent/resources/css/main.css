@@ -8,28 +8,39 @@
     clear: both;
 }
 header{
-    margin-top:1%; 
+    margin-top:6%; 
     width: 100%;
+    height: 100%;
+    max-height: 210px;
+    max-width: 1080px;
 }
 
 #logo_area{
-    position: absolute;
+    position: relative;
+    max-height: 100px;
+    max-width: 300px;
+    width: 50%;
+    height: 100%;
+    bottom: 20px;
+    box-sizing: border-box;
 }
 #logo{
     width:100%;
     height: auto;
 }
 .service_area{
+	position:relative;
     float: right;
-    width: 100%;
-    max-width: 500px;
+    width: 50%;
+    top:20px;
     box-sizing: border-box;
 }
 .menubar{
+    clear: both;
     float: right;
     width: 100%;
     height: 100%;
-    max-height: 50px;
+    max-height: 70px;
     border:none;
     border:0px;
     margin-right:0px;
@@ -126,34 +137,39 @@ header{
     clear:left;
 }
 .container{
-    position: absolute;
+    position: relative;
     max-width: 1080px;
     width: 100%;
     height: auto;
-    top: 67%;
     box-sizing: border-box;
+}
+.mid_content{
+    position: relative;
+    max-width: 1080px;
+    width: 100%;
+    max-height: 350px;
+    height: 100%;
+    margin: 1% auto;
 }
 
 .main_right{
     position:relative;
     float: right;
     width: 100%;
+    margin: auto;
     max-width: 400px;
-    max-height:300px;
     height: 100%;
-    background-color: aqua; /*광고영역표시*/
 }
 .main_left{
     position: relative;
     float: left;
-    width: 60%;
-    max-height: 300px;
+    width: 100%;
+    max-width: 650px;
     height: 100%;
 }
 .main_notice{
     width: 95%;
     max-height: 300px;
-    margin: 0 auto;
     left: 20%; 
     box-sizing: border-box;
 }
@@ -195,8 +211,7 @@ header{
     left: 25%;
 }
 .main_notice ul li img{
-    margin: auto;
-    margin-top:-3.5%
+    margin: auto
 }
 
 .main_notice ul li span {
@@ -207,18 +222,17 @@ header{
     text-align: center;
 }
 .main_search{
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 100%;
     max-width: 1080px;
     max-height: 1200px;
-    top: 110%;
     border-top: 1px solid black;
 }
 .search_area{
-    position: absolute;
-    left: 36%;
-    top: 20%;
+    position: relative;
+    left: 30%;
+    top: 5%;
     max-height: 40px;
     max-width: 480px;
     border: 2px solid #19CF74;
@@ -252,46 +266,40 @@ header{
     float: right;
 }
 .search_menu{
-    position: absolute;
+    position: relative;
     border: 1px solid black;
     max-width: 465px;
     max-height: 165px;
     height: 100%;
     width: 100%;
-    top: 50%;
-    left: 3%;
+
 }
 .search_menu_1{
-    position: absolute;
+    position: relative;
     border: 1px solid black;
     max-width: 465px;
     max-height: 165px;
     height: 100%;
     width: 100%;
-    top: 50%;
-    left: 55%;
 }
 
 .search_menu_2{
-    position: absolute;
+    position: relative;
     border: 1px solid black;
     max-width: 465px;
     max-height: 165px;
     height: 100%;
     width: 100%;
-    top: 120%;
-    left: 3%;
 }
 
 .search_menu_3{
-    position: absolute;
+    position: relative;
     border: 1px solid black;
     max-width: 465px;
     max-height: 165px;
     height: 100%;
     width: 100%;
-    top: 120%;
-    left: 55%;
+
 }
 
 .search_img{
@@ -325,34 +333,51 @@ header{
     color: #19CF74;
 }
 .footer{
-    position: absolute;
+    clear: both;
+    position: relative;
     max-width: 1080px;
-    max-height: 200px;
+    max-height: 500px;
     width: 100%;
     height: 100%;
-    top: 110%;
     border-top: 1.5px solid #686868;
+    font-size: calc(100%-1px);
 }
 .footer_logo{
-    position: absolute;
-    left: -6%;
-    max-height: 165px;
-    max-width: 245px;
+    clear: both;
+    float: left;
+    position: relative;
+    max-height: 200px;
+    max-width: 180px;
     height: 100%;
     width: 100%;
 }
-.aside_area{
+
+.fff{
+    clear: both;
+    position: relative;
+    float: left;
     height: 100%;
-    width: 100%;
-}
-.aside_area h4{
-    position: absolute;
-    height: 30%;
     width: 100%;
     border: 1px auto;
-    top: 10%;
-    left: 14%;
+    max-width: 810px;
+    max-height: 50px;
+    min-width: 510px;
     text-decoration: none;
+    margin: 1% auto;
+    font-size: 80%;
+
+}
+.ddd{
+    position: relative;
+    float: left;
+     height: 100%;
+    width: 100%;
+    border: 1px auto;
+    max-width: 810px;
+    max-height: 140px;
+    min-width: 510px;
+    text-decoration: none;
+    margin: 1% auto;
 }
 .aside_area a{
     margin: 50px;
@@ -360,13 +385,14 @@ header{
     text-decoration: none;
     color: black;
 }
-.aside_area div{
-    position: absolute;
+.aside_area {
+    position: relative;
+    float: left;
     line-height: 160%;
-    height: 30%;
+    height: 100%;
     width: 100%;
+    max-height: 300px;
+    max-width: 800px;
     border: 1px auto;
-    top: 43%;
-    left:18%;
-    font-size: 18px;
+    font-size: 100%;
 }

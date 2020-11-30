@@ -13,7 +13,19 @@ public class ManagerVO extends CommonDTO
 	private String fc_name;
 	private int trash_persent;
 	private int trashCanCount;
+	private int fc_log;
 	
+	
+	public int getFc_log()
+	{
+		return fc_log;
+	}
+
+	public void setFc_log(int fc_log)
+	{
+		this.fc_log = fc_log;
+	}
+
 	public int getTrash_persent()
 	{
 		return trash_persent;

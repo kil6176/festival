@@ -26,6 +26,15 @@ public interface ManagerDAO {
     
 	//쓰레기통 리스트 가져오기
     public List<ManagerVO> getTrashCanList(ManagerVO vo) throws Exception;
+    
+
+	//유저 축제 정보 추가
+	public int addUserFestival(ManagerVO vo) throws Exception;
+
+	//유저 축제 정보 삭제
+	public int deleteUserFestival(ManagerVO vo) throws Exception;
+    
+
 
 }
  

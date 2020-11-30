@@ -173,8 +173,8 @@ ul.flexbox {
 					<c:when test="${member.m_authority == 3}">
 						<ul class="flexbox">
 							<li id="user_info" class="menuLink menuLink_hover">회원 정보</li>
-							<li id="user_management" class="menuLink">회원 관리</li>
-							<li id="can_management" class="menuLink">축제/쓰레기통 관리</li>
+							<li id="user_management" class="menuLink">회원/축제 관리</li>
+							<li id="can_management" class="menuLink">쓰레기통 관리</li>
 							<!-- <li  id="login_log" class="menuLink">로그인 로그</li>-->
 						</ul>
 					</c:when>
@@ -347,7 +347,7 @@ ul.flexbox {
 			</div>
 			<div id="user_management_wrap" class="displayNone">
 				<div class="header" style="padding-left: 20px;">
-					<h2 style="display: inline-block">회원관리</h2>
+					<h2 style="display: inline-block">회원/축제 관리</h2>
 					<span style="float: right; margin-top: 10px; margin-right: 10px;"> <!--
                                 <button id="view_user_pw_btn" style="height:50px">개인정보 변경</button>
                                 <button id="view_user_info_btn" style="height:50px">비밀번호 변경</button>
@@ -381,6 +381,31 @@ ul.flexbox {
 						</table>
 					</div>
 				</form>
+				<div id="user_management_festival_list" class="displayNone" style="padding: 20px;">
+					<table style="text-align: center;  width:100%;" cellspacing="0" cellpadding="0">
+						<input class="festival_addDelete_t_id" type="hidden">
+						<input type="hidden" id="user_festival_list_function_name" name="function_name" value="userDetail"/>
+						<input type="hidden" id="user_festival_list_current_page_no" name="current_page_no" value="1" />
+						<tr id="user_management_festival_list_header">
+							<th>로그순서</th>
+							<th>축제명</th>
+							<th>축제코드</th>
+							<th>-</th>
+						</tr>
+						<tbody id="user_festival_list_body">
+								
+						</tbody>	
+						<tr>
+							<td id="user_festival_list_paging" colspan="4"></td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<button onClick="addUserFestival()" type="button">추가</button>
+								<button type="button" id="user_management_festival_list_back_btn">돌아가기</button>
+							</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 			<form id="festivalForm" name="festivalForm">
 				<input type="hidden" id="function_name" name="function_name" value="getFestivalList"/>
@@ -389,7 +414,7 @@ ul.flexbox {
 				<input type="hidden" class="form-control" name="m_authority" value="${member.m_authority}">
 				<div id="can_management_wrap" class="displayNone">
 					<div class="header" style="padding-left: 20px;">
-						<h2 style="display: inline-block">축제/쓰레기통 관리</h2>
+						<h2 style="display: inline-block">쓰레기통 관리</h2>
 						<span style="float: right; margin-top: 10px; margin-right: 10px;"> <!--
 	                                <button id="view_user_pw_btn" style="height:50px">개인정보 변경</button>
 	                                <button id="view_user_info_btn" style="height:50px">비밀번호 변경</button>

@@ -26,9 +26,15 @@
 		SELECT * FROM festival.trash_info where fc_num = #{fc_num} LIMIT #{limit} OFFSET #{offset}
 	</select>
 	
-	 <select id="getTrashCanCnt" parameterType="com.spring.festival.dto.ManagerVO" resultType="int">
-		SELECT count(*) as c FROM festival.trash_info where fc_num = #{fc_num}
-	</select>
+	<insert id="addUserFestival" parameterType="com.spring.festival.dto.ManagerVO">
+		INSERT INTO festival_concerned(m_id, fc_num) 
+				VALUES(    #{m_id} 
+                 		 , #{fc_num}
+					  )
+	</insert>	
 	
-
+	 <delete id="deleteUserFestival" parameterType="com.spring.festival.dto.ManagerVO">
+		DELETE FROM festival_concerned 
+		WHERE fc_log = #{fc_log}
+	</delete>
 </mapper>

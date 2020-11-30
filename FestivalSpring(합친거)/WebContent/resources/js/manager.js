@@ -58,7 +58,13 @@ $(document).ready(function()
 				menuLink_click(login_log);
 			});
 			
-
+			
+			$("#user_management_festival_list_back_btn").click(function()
+			{
+				$("#user_management_festival_list").addClass("displayNone");
+				$("#user_management_view").removeClass("displayNone");
+			});
+			
 			function menuLink_click(idx)
 			{
 				switch (idx)
@@ -74,6 +80,7 @@ $(document).ready(function()
 						$("#login_log_wrap").addClass("displayNone");
 						$("#can_management_festival_can_add").addClass("displayNone");
 						$("#can_management_festival_can_change").addClass("displayNone");
+						$("#user_management_festival_list").addClass("displayNone");
 						break;
 						
 					case user_management:
@@ -87,6 +94,8 @@ $(document).ready(function()
 						$("#login_log_wrap").addClass("displayNone");
 						$("#can_management_festival_can_add").addClass("displayNone");
 						$("#can_management_festival_can_change").addClass("displayNone");
+						$("#user_management_festival_list").addClass("displayNone");
+						$("#user_management_view").removeClass("displayNone");
 						break;
 						
 					case can_management:
@@ -103,6 +112,8 @@ $(document).ready(function()
 						$("#can_management_festival_can_list").addClass("displayNone");
 						$("#can_management_festival_can_add").addClass("displayNone");
 						$("#can_management_festival_can_change").addClass("displayNone");
+						$("#user_management_festival_list").addClass("displayNone");		
+						
 						break;
 						
 					case login_log:
@@ -116,6 +127,7 @@ $(document).ready(function()
 						$("#user_info_wrap").addClass("displayNone");
 						$("#can_management_festival_can_add").addClass("displayNone");
 						$("#can_management_festival_can_change").addClass("displayNone");
+						$("#user_management_festival_list").addClass("displayNone");
 						break;
 				}
 			}
@@ -551,7 +563,7 @@ function getUserListCallback(obj)
 				
 				console.log(m_authority);
 				str += "<tr>";
-				str += "<td><a href='"+"javaScript:userDetail("+m_id+")'>" + m_id + "</a></td>";
+				str += "<td><a href='"+"javaScript:userDetail(\""+m_id+"\")'>" + m_id + "</a></td>";
 				str += "<td>" + m_name + "</td>";
 				str += "<td>" + m_nickname + "</td>";
 				str += "<td>";
@@ -754,8 +766,7 @@ function festivalDetail(fc_num, currentPageNo, fc_name)
 			success: function(obj)
 			{
 				getCanListCallback(obj);
-			},
-			error: function(xhr, status, error) {}
+			}
 		});
 
 	/** 유저 목록 조회  콜백 함수 */
@@ -974,6 +985,200 @@ function deleteTrashCan()
 			}
 			else
 				alert("오류가 발생하여 쓰레기통을 삭제 하지 못하였습니다.");
+		}
+	});
+}
+
+
+
+
+
+
+function userDetail(m_id, t_CurrentPageNo)
+{
+	
+	$("#user_management_festival_list").removeClass("displayNone");
+	$("#user_management_view").addClass("displayNone");
+	$(".festival_addDelete_t_id").val(m_id);
+	
+	if (t_CurrentPageNo === undefined)
+	{
+		t_CurrentPageNo = "1";
+	}
+	console.log(m_id);
+	
+	$("#user_festival_list_current_page_no").val(t_CurrentPageNo);
+	
+	$.ajax(
+	{
+		url: "/getUserFestivalList.do",
+		data: {
+			"m_id" : m_id,
+			"current_page_no" : t_CurrentPageNo,
+			"function_name" : $("#user_festival_list_function_name").val()
+		},
+		dataType: "JSON",
+		cache: false,
+		async: true,
+		type: "POST",
+		success: function(obj)
+		{
+			getUserFestivalListCallback(obj);
+		},
+		error: function(xhr, status, error) {}
+	});
+}
+
+/** 유저 목록 조회  콜백 함수 */
+function getUserFestivalListCallback(obj)
+{
+	
+	$("#user_festival_list_body").html("");
+	//$("#total_count").text(totalCount);
+	$("#user_festival_list_paging").html("");
+	var state = obj.state;
+	if (state == "SUCCESS")
+	{
+		var data = obj.data;
+		var list = data.list;
+		var listLen = list.length;
+		var totalCount = data.totalCount;
+		var pagination = data.pagination;
+		var str = "";
+		if (listLen > 0)
+		{
+			for (var a = 0; a < listLen; a++)
+			{
+				(function(a){
+					var m_id = list[a].m_id;
+					var fc_log = list[a].fc_log;
+					var y = list[a].y;
+					var fc_num = list[a].fc_num;
+					var fc_name = list[a].fc_name;
+					var t_id = list[a].t_id;
+					var t_can_height = list[a].t_can_height;
+					var t_height = list[a].t_height;
+					var trashCanCount = 0;
+					var normalUser = "1";
+					var festivalManager = "2";
+					var siteManager = "3";
+					
+				    $.ajax({
+				        type: "POST",
+				        async: false,
+				        data: {"fc_num": fc_num},
+				        dataType: 'json',
+				        url: "/getTrashCanCnt.do",
+				        success: function (data) {
+				        	trashCanCount = data;
+				        }
+				    });
+	
+				    $.ajax({
+				        type: "GET",
+				        async: false,
+				        dataType: 'xml',
+						crossOrigin: true,
+						proxy: "https://www.festvalcl.tk//proxy.php",
+				        url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?"
+				             + "ServiceKey=j6LXjPijNQRYMD91nULBdKVcG4dB1UwKCSKNzdNF43iSdduDRIYm8t3RaktEga5bhfvKQ5yJj6o7EWMqGVF2NQ%3D%3D"
+				             + "&contentTypeId=15"
+				             + "&contentId=" + fc_num
+				             + "&MobileOS=ETC"
+				             + "&MobileApp=TourAPI3.0_Guide"
+				             + "&defaultYN=Y"
+				             + "&firstImageYN=Y"
+				             + "&listYN=Y"
+				             + "&catcodeYN=Y"
+				             + "&addrinfoYN=Y"
+				             + "&mapinfoYN=Y"
+				             + "&overviewYN=Y"
+				             + "&transGuideYN=Y",
+				        success: function (data) {
+				            $(data).find('item').each(function () {
+				                fc_name = $('title', this).text();
+	
+								str += "<tr>";
+								str += "<td>" + fc_log + "</td>";
+								str += "<td>" + fc_name + "</td>";
+								str += "<td>" + fc_num + "</td>";
+								str += `<td><button type='button' onclick='deleteUserFestival(`+fc_log+`)'>삭제</button></td>`;
+								str += "</tr>";
+					
+								$("#user_festival_list_body").html(str);
+								//$("#total_count").text(totalCount);
+								$("#user_festival_list_paging").html(pagination);
+				            });
+				        }
+				    });
+			    })(a);
+			}
+		}
+		else
+		{
+			str += "<td colspan='4'>등록된 축제가 존재하지 않습니다.</td>";
+		}
+	}
+	else
+	{
+		alert("관리자에게 문의하세요.");
+		return;
+	}
+}
+
+function addUserFestival()
+{
+	var fc_num = prompt("추가하실 번호를 입력해주세요");
+	var m_id = $(".festival_addDelete_t_id").val();
+	if(fc_num == null)
+		return false;
+					
+	$.ajax(
+	{
+		url: "/addUserFestival.do",
+		data: 
+		{
+			"m_id" : m_id,
+			"fc_num" : fc_num
+		},
+		dataType: "JSON",
+		async: false,
+		type: "POST",
+		success: function(data)
+		{
+			if(data == 1)
+				alert("축제 정보를 추가 하였습니다");
+			else
+				alert("오류가 발생하여 축제 정보를 추가 하지 못하였습니다.");
+		}
+	});
+}
+
+
+function deleteUserFestival(fc_log)
+{
+	
+	if (confirm("축제 정보를 추가 하시겠습니까?") == false)
+	{
+		return false;
+	}
+	
+	$.ajax(
+	{
+		url: "/deleteUserFestival.do",
+		data: 
+		{
+			"fc_log" : fc_log
+		},
+		dataType: "JSON",
+		async: false,
+		type: "POST",
+		success: function(data)
+		{
+			if(data == 1)
+				alert("축제 정보를 삭제 하였습니다");
+			else
+				alert("오류가 발생하여 축제 정보를 삭제 하지 못하였습니다.");
 		}
 	});
 }

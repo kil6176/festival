@@ -20,6 +20,7 @@ public class PagingUtil {
 		int countPerPage = commonForm.getCount_per_page(); // 한 화면에 출력될 페이지 수
 		int totalListCount = commonForm.getTotal_list_count(); // 총 게시물 수
 		int fc_num = commonForm.getFc_num(); // 축제번호
+		String m_id = commonForm.getM_id(); // 축제번호
 		int totalPageCount = totalListCount / countPerList; // 총 페이지 수
 		if (totalListCount % countPerList > 0) { // 총 페이수를 구할 때 int형으로 계산하면 나머지가 있는 경우 게시물이 존재하기 때문에 총 페이지의 수를 수정
 			totalPageCount = totalPageCount + 1;
@@ -70,6 +71,33 @@ public class PagingUtil {
 			if(totalPageCount > 1)
 				pagination += "<a href='javascript:" + functionName + "(" + fc_num + "," + totalLastPage + ");' class=\"direction_right01\">[>>]</a>";
 			pagination += "</div>";
+		}
+		else if(m_id != null && fc_num == 0)
+		{
+			// 페이지 네이게이션 설정
+						pagination += "<div class='pagination'>";
+
+						if(totalPageCount > 5)
+							pagination += "<a href='javascript:" + functionName + "(\"" + m_id +","+ totalFirstPage + "\");' class=\"direction_left01\">[<<]</a>";
+						
+						if(totalPageCount > 1)
+							pagination += "<a href='javascript:" + functionName + "(\"" + m_id +"\"," + prePerPage + ");' class=\"direction_left01\">[<]</a>";
+						
+						for (int a = viewFirstPage; a <= ViewLastPage; a++) {
+							if (a == currentPage) {
+								pagination += "<a href='javascript:" + functionName + "(\"" + m_id +"\"," + a + ");' class='onpage'>[" + a + "]</a>";
+							} else {
+								pagination += "<a href='javascript:" + functionName + "(\"" + m_id +"\",\"" + a + "\");'>[" + a + "]</a>";
+							}
+						}
+						
+						if(totalPageCount > 5)
+							pagination += "<a href='javascript:" + functionName + "(\"" + m_id + "\"," + nextPerPage + ");' class=\"direction_right01\">[>]</a>";
+						
+						if(totalPageCount > 1)
+							pagination += "<a href='javascript:" + functionName + "(\"" + m_id + "\"," + totalLastPage + ");' class=\"direction_right01\">[>>]</a>";
+						pagination += "</div>";
+			
 		}
 		else 
 		{

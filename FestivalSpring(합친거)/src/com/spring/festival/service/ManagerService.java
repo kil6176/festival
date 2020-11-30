@@ -18,5 +18,14 @@ public interface ManagerService {
 
 	//쓰레기통 갯수 검색
 	public int getTrashCanCnt(ManagerVO vo) throws Exception;
+	
+	//유저 축제 검색
+    public ResultUtil getUserFestivalList(ManagerVO vo) throws Exception;
 
+	//유저 축제 정보 추가
+    public int addUserFestival(ManagerVO vo) throws Exception;
+
+	//유저 축제 정보 삭제
+    public int deleteUserFestival(ManagerVO vo) throws Exception;
+	
 }

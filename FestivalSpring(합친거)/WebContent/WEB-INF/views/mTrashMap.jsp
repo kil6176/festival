@@ -248,7 +248,7 @@ ul {
 #watchPositionBtn
 {
 	position: absolute;
-	top: 200px;
+	top: 15%;
 	width: 50px;
 	height: 50px;
 	margin: 0px;
@@ -266,8 +266,7 @@ ul {
 		<div class="map-header-bar" class="input-group input-group-lg">
 			<div style="width: calc(100% - 10px); height:100%; margin:10px 5px 10px 5px;">
 				<div style="height:50px; margin-bottom:10px;">
-					<button style="position:relative; height:100%;">로고</button>
-					<span>초록축제</span>
+				<img src="resources/images/main/header_logo.png" style="background-color:#32cd32; max-width:30%; height:50px">
 					<button style="float:right; height:100%;">메뉴</button>
 				</div>
 		  		<div align="center" style="width:100%; height:50px;">
@@ -285,7 +284,7 @@ ul {
 		<div id="map_size_wrap" style="width:100%; position:relative;height:calc(100% - 130px); overflow: hidden; padding:0px; margin:0px">
 			<div id="map" style="width:100%; position:relative;height:100%; overflow: hidden; padding:0px; margin:0px">
 			</div>
-			<button id="watchPositionBtn">실시간 위치정보</button>
+			<button id="watchPositionBtn">현재 위치</button>
 		</div>
 		
 		<div id="festival-list" class="displayNone" style="overflow-y:scroll; height:70%;" align="center">
@@ -529,11 +528,11 @@ ul {
 		var markers = [];
 		// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 		function addMarker(position) {
-		    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+		    var imageSrc = 'http://festival.dothome.co.kr/img/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
 		        imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
 		        imgOptions =  {
 		            spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
-		            spriteOrigin : new kakao.maps.Point(0, 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+		            spriteOrigin : new kakao.maps.Point(0, (3*46)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
 		            offset: new kakao.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
 		        },
 		        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),

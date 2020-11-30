@@ -368,7 +368,7 @@ public class HomeController
 	}
 
 	
-	// 축제 목록 조회
+	// 쓰레기통 목록 조회
 	@RequestMapping(value = "/getTrashCanList.do")
 	@ResponseBody
 	public ResultUtil selectTrashList(HttpServletRequest request, HttpServletResponse response, ManagerVO vo) throws Exception {
@@ -446,7 +446,7 @@ public class HomeController
 		return id;
 	}
 	
-	// 아이디 찾기
+	// 패스워드 찾기
 	@ResponseBody
 	@RequestMapping(value = "/updateFindPW.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public String updateFindPW(MemberVO vo) throws Exception
@@ -455,5 +455,40 @@ public class HomeController
 
 		String PW = service.updateFindPW(vo);
 		return PW;
+	}
+	
+	
+	// 쓰레기통 목록 조회
+	@ResponseBody
+	@RequestMapping(value = "/getUserFestivalList.do")
+	public ResultUtil getUserFestivalList(HttpServletRequest request, HttpServletResponse response, ManagerVO vo) throws Exception {
+	
+	ResultUtil resultUtils = managerService.getUserFestivalList(vo);
+	
+	return resultUtils;
+	}
+	
+	// 유저 축제 정보추가
+	@RequestMapping(value = "/addUserFestival.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int addUserFestival(ManagerVO vo) throws Exception
+	{
+		logger.info("post addUserFestival");
+
+		int result = managerService.addUserFestival(vo);
+		
+		return result;
+	}
+	
+	// 유저 축제 정보추가
+	@RequestMapping(value = "/deleteUserFestival.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int deleteUserFestival(ManagerVO vo) throws Exception
+	{
+		logger.info("post deleteUserFestival");
+
+		int result = managerService.deleteUserFestival(vo);
+		
+		return result;
 	}
 }

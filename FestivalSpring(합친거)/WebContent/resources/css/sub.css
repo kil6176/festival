@@ -1,7 +1,7 @@
 * {margin:0;padding:0;}
 a{text-decoration: none;color: black;}
 /******************************       banner       ***************************************/
-.sub_banner {max-width:1920px;max-height:270px; position: absolute;top: 25%;  width: 100%;height: 100%;left: 0.0%;clear: both;}
+.sub_banner {max-width:1920px;max-height:270px; position: absolute;top: 27%;  width: 100%;height: 100%;left: 0.0%;clear: both;}
 .sub_banner .textbox {position:absolute;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%);line-height:1.6;text-align:center;}
 .sub_banner img{width: 100%;height: 100%;}
 .textbox p{font-size: 20px;font-weight: 200;color: white;}
@@ -12,27 +12,35 @@ a{text-decoration: none;color: black;}
 #text_top{float: left;max-width: 50%;margin-top:10%;margin-left: 10%;}
 #text_bottom{float: right; max-width: 40%;margin-top: 8%;}
 .contentbox{margin: 0 auto;max-width: 90%;clear: both; margin-right: 9%;}
-/******************************      nav      ************************************/
-nav{position: absolute;left: 8.6%;top: 55%;width: 50%;max-width: 250px;clear: both;height: 89%;border-right: 1px solid black;}
-.sub_menu_left{margin: 0 auto;}
-.sub_menu_left h1{font-size: 180%;margin:20% 0% 21% 9%;width:100%;max-width:229px;}
-.sub_menulist_left{margin: 5%;width: 100%;max-width: 236px;border-top: 1px solid black;}
+/******************************      nav1      ************************************/
+nav{position: absolute;top:57%;left: 11%;margin: 0.8% auto;max-height:370px;max-width: 200px;width: 100%;height: 100%; background-color: #F3F3F3}
+.sub_menu_left{text-align: center; max-height: 120px;height: 100%;vertical-align: middle; background-color:#D1D1D1}
+.sub_menu_left h1{position: absolute;left: 25%;top: 12%;}
+.sub_menulist_left{}
 .sub_menulist_left ul{list-style: none;}
-.sub_menulist_left ul li{margin-top: 25%;margin: 7%; font-size: 150%;}
+.sub_menulist_left ul li{margin: 10%;}
 .sub_menulist_left ul li span{float: right;}
+/******************************      nav2      ************************************/
+.nav2{position: absolute;top:57%;left: 11%;margin: 0.8% auto;max-height:245px;max-width: 200px;width: 100%;height: 100%; background-color: #F3F3F3}
+.sub_menu_left2{text-align: center; max-height: 120px;height: 100%;vertical-align: middle; background-color:#D1D1D1}
+.sub_menu_left2 h1{position: absolute;left: 25%;top: 18%;}
+.sub_menulist_left2{}
+.sub_menulist_left2 ul{list-style: none;}
+.sub_menulist_left2 ul li{margin: 10%;}
+.sub_menulist_left2 ul li span{float: right;}
 /******************************      community      ************************************/
-.sub_commmunity{width: 100%;height: 100%; max-height: 800px;clear: both;/*margin-left: 8%*/;margin-top: 5.5%;}
-.sub_title_area{position: absolute; width: 100%;height: 100%;box-sizing: border-box;max-height: 40px;max-width: 400px;margin-bottom: 4.7%; left: 25%}
-.list_title{max-width: 340px;width: 100%}
+.sub_commmunity{position: absolute; width: 100%;height: 100%; max-height: 580px;max-width: 1080PX;min-height: 580px;min-width: 1080px; clear: both;top: 58.7%;background-color: #ffffff;}
+.sub_title_area{width: 100%;height: 100%;max-height: 120px;}
+.list_title{max-width: 350px;width: 100%;position: absolute;left: 2%;top: 6%;}
 .list_title h2{color: black;float: left;}
 .list_title p{margin-top: 2%;float: right;}
 .list_title p a{color: #848484;text-decoration: none;}
-.notice_box{position: absolute; width: 100%;height: 100%;border-top: 1px solid black;top: 70%;max-width: 1080px;}
+.notice_box{width: 100%;height: 100%;border-top: 1px solid black;max-width: 1080px;}
 /******************************        footer        **************************************/
 
 .sub_footer{
     position: absolute;
-    top: 120%;
+    top: 135%;
     clear: both;  
     max-width: 1080px;
     max-height: 200px;
