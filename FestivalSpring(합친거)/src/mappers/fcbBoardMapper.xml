@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.board.fcbBoardMapper">
+
+	<select id="getBoardCnt" parameterType="com.spring.board.form.FcbBoardForm" resultType="int">
+	
+		SELECT COUNT(*)
+		FROM festival_concerned_board
+	
+	</select>
+	
+	<select id="getBoardList" parameterType="com.spring.board.form.FcbBoardForm" resultType="com.spring.board.dto.FcbBoardDto">
+	
+		SELECT *
+		FROM ( 
+				SELECT BOARD_NUM
+					 , FCB_GROUP_NUM 
+					 , M_NICKNAME
+					 , FCB_TITLE
+					 , FCB_CONTENT
+					 , FCB_HITS
+					 , FCB_DELETE_YN
+					 , M_ID
+					 , CAST( DATE_FORMAT( FCB_INSERT_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FCB_insert_date
+					 , CAST( DATE_FORMAT( FCB_UPDATE_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FCB_update_date  
+			   FROM festival_concerned_board
+			  ) T1
+		LIMIT #{limit} OFFSET #{offset}
+	
+	</select>
+	
+	<delete id="updateBoardHits" parameterType="com.spring.board.form.FcbBoardForm">
+	
+		UPDATE festival_concerned_board 
+		   SET FCB_HITS = FCB_HITS + 1
+		     , FCB_UPDATE_DATE = NOW()
+ 		WHERE BOARD_NUM = #{board_num}
+	
+	</delete>
+	
+	<select id="getBoardDetail" parameterType="com.spring.board.form.FcbBoardForm" resultType="com.spring.board.dto.FcbBoardDto">
+	
+		SELECT T1.*
+		FROM (
+				SELECT BOARD_NUM 
+					 , FCB_GROUP_NUM 
+					 , M_NICKNAME 
+					 , FCB_TITLE 
+					 , FCB_CONTENT 
+					 , FCB_HITS
+					 , FCB_DELETE_YN
+					 , M_ID
+					 , CAST( DATE_FORMAT( FCB_INSERT_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FCB_insert_date
+					 , CAST( DATE_FORMAT( FCB_UPDATE_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FCB_update_date  
+				FROM festival_concerned_board
+				WHERE BOARD_NUM = #{board_num}		
+		      ) T1		
+	
+	</select>
+		
+	<select id="getBoardFileList" parameterType="com.spring.board.form.BoardFileForm" resultType="com.spring.board.dto.BoardFileDto">
+	
+		SELECT T1.*
+		FROM (
+				SELECT BOARD_NUM
+					 , BF_NUM
+					 , BF_NAME_KEY
+					 , BF_NAME
+					 , BF_PATH
+					 , BF_SIZE
+			     	, M_ID
+					, CAST( DATE_FORMAT( BF_INSERT_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FCB_insert_date
+					, CAST( DATE_FORMAT( BF_UPDATE_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FCB_update_date
+				FROM board_file
+				WHERE BOARD_NUM = #{board_num}
+				AND BF_DELETE_YN = 'N'
+		      ) T1		
+			
+	</select>
+	
+	<select id="getBoardReRef" parameterType="com.spring.board.form.FcbBoardForm" resultType="int">
+	
+		SELECT IFNULL(MAX(FCB_GROUP_NUM), 0) + 1
+		FROM festival_concerned_board
+	
+	</select>
+	
+	<insert id="insertBoard" parameterType="com.spring.board.form.FcbBoardForm">
+		
+		<selectKey resultType="int" keyProperty="board_num" order="AFTER">
+
+			SELECT LAST_INSERT_ID()
+
+		</selectKey>
+		
+		INSERT 
+		INTO festival_concerned_board 
+		(
+		  	  FCB_GROUP_NUM
+		  	, M_NICKNAME
+		  	, FCB_TITLE
+		  	, FCB_CONTENT
+		  	, M_ID
+		  	, FCB_INSERT_DATE
+		  	, FCB_UPDATE_DATE
+		) 
+		VALUES 
+		(
+			  1
+			, #{m_nickname}
+			, #{fcb_title}
+			, #{fcb_content}
+			, 'NONMEMBER'
+			, NOW() 
+			, NOW() 
+		)
+			
+	</insert>
+	
+	<insert id="insertBoardFile" parameterType="com.spring.board.form.BoardFileForm">
+	
+		<selectKey resultType="int" keyProperty="bf_num" order="BEFORE">
+			
+			SELECT IFNULL(MAX(BF_NUM), 0) + 1 
+			FROM board_file
+			WHERE BOARD_NUM = #{board_num}
+			  
+		</selectKey>
+				
+		INSERT 
+		INTO board_file
+		(
+			  BOARD_NUM
+			, BF_NUM
+			, BF_NAME_KEY
+			, BF_NAME
+			, BF_PATH
+			, BF_SIZE
+			, BF_DELETE_YN 
+			, M_ID
+			, BF_INSERT_DATE
+			, BF_UPDATE_DATE
+		)
+		VALUES
+		(
+			  #{board_num}
+			, #{bf_num}
+			, #{bf_name_key}
+			, #{bf_name}
+			, #{bf_path}
+			, #{bf_size}
+			, 'N'
+			, 'NONMEMBER'
+			, NOW()
+			, NOW() 
+		)	
+		
+	</insert>
+	
+	<insert id="insertBoardFail" parameterType="com.spring.board.form.FcbBoardForm">
+	
+		INSERT 
+		INTO festival_concerned_board 
+		(
+		  	  FCB_GROUP_NUM
+		  	, M_NICKNAME
+		  	, FCB_TITLE
+		  	, FCB_CONTENT
+		  	, M_ID
+		  	, FCB_INSERT_DATE
+		  	, FCB_UPDATE_DATE
+		) 
+		VALUES 
+		(
+			  0
+			, #{m_nickname}
+			, #{fcb_title}
+			, #{fcb_content}
+			, 'NONMEMBER'
+			, NOW() 
+			, NOW() 
+		)
+	
+	</insert>
+		
+	<delete id="deleteBoard" parameterType="com.spring.board.form.FcbBoardForm">
+	
+		DELETE 
+		FROM festival_concerned_board 
+		WHERE BOARD_NUM = #{board_num}
+	
+	</delete>
+	
+	<delete id="updateBoard" parameterType="com.spring.board.form.FcbBoardForm">
+	
+		UPDATE festival_concerned_board 
+		   SET FCB_TITLE = #{fcb_title}
+		     , FCB_CONTENT = #{fcb_content}
+		     , FCB_UPDATE_DATE = NOW()
+ 		WHERE BOARD_NUM = #{board_num}
+	
+	</delete>
+	
+	<delete id="deleteBoardFile" parameterType="com.spring.board.form.BoardFileForm">
+	
+		UPDATE board_file 
+		   SET BF_DELETE_YN = 'Y'
+		     , BF_UPDATE_DATE = NOW()
+ 		WHERE BOARD_NUM = #{board_num}
+ 		  AND BF_NUM = #{bf_num}
+	
+	</delete>
+	
+</mapper>

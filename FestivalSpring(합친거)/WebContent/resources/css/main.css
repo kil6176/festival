@@ -1,0 +1,372 @@
+
+
+#wrap{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    max-width: 1080px;
+    clear: both;
+}
+header{
+    margin-top:1%; 
+    width: 100%;
+}
+
+#logo_area{
+    position: absolute;
+}
+#logo{
+    width:100%;
+    height: auto;
+}
+.service_area{
+    float: right;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+.menubar{
+    float: right;
+    width: 100%;
+    height: 100%;
+    max-height: 50px;
+    border:none;
+    border:0px;
+    margin-right:0px;
+    margin-top: 3%;
+    padding:0px;
+    font: 67.5% "나눔고딕", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+    font-size:18px;                 /* 메뉴 글꼴 크기 */
+    font-weight:bold;
+    box-sizing: border-box;
+}
+
+.menubar ul{
+    background: #FFFFFF;                          /*메뉴 글자 없는부분 배경*/
+    height:10%;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.menubar ul li{
+    list-style-type: none;
+    float: right;
+}
+
+
+.menubar li a{
+    background: #FFFFFF;                        /*메뉴 글자 있는부분 배경*/
+    color:black;
+    display:block;
+    font-weight:bold;
+    line-height:50px;
+    margin:0px;
+    padding:0px 25px;
+    text-align:center;
+    text-decoration:none;
+}
+
+.menubar li a:hover, .menubar ul li:hover a{
+    background: white;
+    color: black;
+    text-decoration:none;
+    display: block;
+}
+
+.menubar li ul{                                           /*드랍메뉴*/
+    background: #FFFFFF;
+    display:none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+    height:auto;
+    padding:0px;
+    margin:0px;
+    border:0px;
+    position:absolute;
+    width:200px;
+    z-index:200;
+/*top:1em;
+/*left:0;*/
+}
+
+.menubar li:hover ul{
+    display:block;              /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+}
+
+.menubar li li{
+    background: #E6E6E5;        /* 드랍메뉴 배경색 */
+    display:block;
+    float:none;
+    margin:0px;
+    padding:0px;
+    width:200px;
+}
+
+.menubar li:hover li a{
+    background:none;
+}
+
+.menubar li ul a{
+    display:block;
+    height:50px;
+    font-size:14px;             /* 드랍메뉴 글꼴 크기 */
+    font-style:normal;
+    margin:0px;
+    padding:0px 10px 0px 15px;
+    text-align:left;
+}
+
+.menubar li ul a:hover, .menubar li ul li:hover a{
+    background: rgb(71,71,71);
+    border:0px;
+    color:#ffffff;
+    text-decoration:none;
+}
+
+.menubar p{
+    clear:left;
+}
+.container{
+    position: absolute;
+    max-width: 1080px;
+    width: 100%;
+    height: auto;
+    top: 67%;
+    box-sizing: border-box;
+}
+
+.main_right{
+    position:relative;
+    float: right;
+    width: 100%;
+    max-width: 400px;
+    max-height:300px;
+    height: 100%;
+    background-color: aqua; /*광고영역표시*/
+}
+.main_left{
+    position: relative;
+    float: left;
+    width: 60%;
+    max-height: 300px;
+    height: 100%;
+}
+.main_notice{
+    width: 95%;
+    max-height: 300px;
+    margin: 0 auto;
+    left: 20%; 
+    box-sizing: border-box;
+}
+.main_notice a{
+    color: black;
+    margin-top: -1.5%;
+    text-decoration: none;
+}
+.main_notice li{
+    list-style: none;
+}
+.main_notice h2{
+    margin: 10px;
+    width: 80%;
+}
+.main_notice h6{
+    position: absolute;
+    left:85%;
+    top: 6%;
+    margin: 10px;
+    width: 20%;
+    box-sizing: border-box;
+}
+.main_notice hr{
+    color: black;
+
+}
+.main_notice ul{
+    width: 100%;
+}
+.main_notice ul li{
+    line-height: 65px;
+    padding-left: 1%;
+    margin: 0 auto;
+    
+}
+.main_notice ul li a {
+    position: absolute;
+    left: 25%;
+}
+.main_notice ul li img{
+    margin: auto;
+    margin-top:-3.5%
+}
+
+.main_notice ul li span {
+    display: inline-block;
+    float: right;
+    margin-top: -1.5%;
+    width:24%;
+    text-align: center;
+}
+.main_search{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    max-width: 1080px;
+    max-height: 1200px;
+    top: 110%;
+    border-top: 1px solid black;
+}
+.search_area{
+    position: absolute;
+    left: 36%;
+    top: 20%;
+    max-height: 40px;
+    max-width: 480px;
+    border: 2px solid #19CF74;
+}
+.search_area select{
+    width: 30%;
+    border: 0px;
+    height: 42;
+    outline: none;
+    padding: 1px;
+    box-sizing: border-box;
+    border: 2px solid #19CF74;
+    border-top: none;
+    border-left: none;
+}
+
+.search_area input{
+    font-size: 15px;
+    width: 50%;
+    padding:0px;
+    border: 0px;
+    outline: none;
+}
+.search_area button{
+    width: 55.66px;
+    height: 40px;
+    border: 0px;
+    background: #19CF74;
+    outline: none;
+    color: #ffffff;
+    float: right;
+}
+.search_menu{
+    position: absolute;
+    border: 1px solid black;
+    max-width: 465px;
+    max-height: 165px;
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    left: 3%;
+}
+.search_menu_1{
+    position: absolute;
+    border: 1px solid black;
+    max-width: 465px;
+    max-height: 165px;
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    left: 55%;
+}
+
+.search_menu_2{
+    position: absolute;
+    border: 1px solid black;
+    max-width: 465px;
+    max-height: 165px;
+    height: 100%;
+    width: 100%;
+    top: 120%;
+    left: 3%;
+}
+
+.search_menu_3{
+    position: absolute;
+    border: 1px solid black;
+    max-width: 465px;
+    max-height: 165px;
+    height: 100%;
+    width: 100%;
+    top: 120%;
+    left: 55%;
+}
+
+.search_img{
+    float: left;
+    max-height: 165px;
+    max-width: 230px;
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid black;
+}
+.search_festival{
+    position: absolute;
+    left: 50%;
+    top: 43%;
+    max-height: 165px;
+    max-width: 235px;
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    margin:  auto;
+}
+.search_number{
+    position: absolute;
+    top: 190%;
+    left: 34%;
+    box-sizing: border-box;
+}
+.search_number a{
+    margin: 20px;
+    text-decoration: none;
+    color: #19CF74;
+}
+.footer{
+    position: absolute;
+    max-width: 1080px;
+    max-height: 200px;
+    width: 100%;
+    height: 100%;
+    top: 110%;
+    border-top: 1.5px solid #686868;
+}
+.footer_logo{
+    position: absolute;
+    left: -6%;
+    max-height: 165px;
+    max-width: 245px;
+    height: 100%;
+    width: 100%;
+}
+.aside_area{
+    height: 100%;
+    width: 100%;
+}
+.aside_area h4{
+    position: absolute;
+    height: 30%;
+    width: 100%;
+    border: 1px auto;
+    top: 10%;
+    left: 14%;
+    text-decoration: none;
+}
+.aside_area a{
+    margin: 50px;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+.aside_area div{
+    position: absolute;
+    line-height: 160%;
+    height: 30%;
+    width: 100%;
+    border: 1px auto;
+    top: 43%;
+    left:18%;
+    font-size: 18px;
+}

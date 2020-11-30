@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.board.mvbBoardMapper">
+
+	<select id="getBoardCnt" parameterType="com.spring.board.form.MvbBoardForm" resultType="int">
+	
+		SELECT COUNT(*)
+		FROM manager_versus_board
+	
+	</select>
+	
+	<select id="getBoardList" parameterType="com.spring.board.form.MvbBoardForm" resultType="com.spring.board.dto.MvbBoardDto">
+	
+		SELECT *
+		FROM ( 
+				SELECT BOARD_NUM
+					 , MVB_GROUP_NUM 
+					 , MVB_ANSWER_DEEP 
+					 , MVB_ANSWER_ORDER
+					 , M_NICKNAME
+					 , MVB_TITLE
+					 , MVB_CONTENT
+					 , MVB_HITS
+					 , MVB_VERSUS_DELETE_YN
+					 , M_ID
+					 , CAST( DATE_FORMAT( MVB_INSERT_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS MVB_insert_date
+					 , CAST( DATE_FORMAT( MVB_UPDATE_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS MVB_update_date  
+			   FROM manager_versus_board
+			  ) T1
+		LIMIT #{limit} OFFSET #{offset}
+	
+	</select>
+	
+	<delete id="updateBoardHits" parameterType="com.spring.board.form.MvbBoardForm">
+	
+		UPDATE manager_versus_board 
+		   SET MVB_HITS = MVB_HITS + 1
+		     , MVB_UPDATE_DATE = NOW()
+ 		WHERE BOARD_NUM = #{board_num}
+	
+	</delete>
+	
+	<select id="getBoardDetail" parameterType="com.spring.board.form.MvbBoardForm" resultType="com.spring.board.dto.MvbBoardDto">
+	
+		SELECT T1.*
+		FROM (
+				SELECT BOARD_NUM 
+					 , MVB_GROUP_NUM
+					 , MVB_ANSWER_DEEP 
+					 , MVB_ANSWER_ORDER  
+					 , M_NICKNAME 
+					 , MVB_TITLE 
+					 , MVB_CONTENT 
+					 , MVB_HITS
+					 , MVB_VERSUS_DELETE_YN
+					 , M_ID
+					 , CAST( DATE_FORMAT( MVB_INSERT_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS MVB_insert_date
+					 , CAST( DATE_FORMAT( MVB_UPDATE_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS MVB_update_date  
+				FROM manager_versus_board
+				WHERE BOARD_NUM = #{board_num}		
+		      ) T1		
+	
+	</select>
+		
+	<select id="getBoardFileList" parameterType="com.spring.board.form.BoardFileForm" resultType="com.spring.board.dto.BoardFileDto">
+	
+		SELECT T1.*
+		FROM (
+				SELECT BOARD_NUM
+					 , BF_NUM
+					 , BF_NAME_KEY
+					 , BF_NAME
+					 , BF_PATH
+					 , BF_SIZE
+			     	, M_ID
+					, CAST( DATE_FORMAT( BF_INSERT_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS MVB_insert_date
+					, CAST( DATE_FORMAT( BF_UPDATE_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS MVB_update_date
+				FROM board_file
+				WHERE BOARD_NUM = #{board_num}
+				AND BF_DELETE_YN = 'N'
+		      ) T1		
+			
+	</select>
+	
+	<select id="getMVBGroupNum" parameterType="com.spring.board.form.MvbBoardForm" resultType="int">
+	
+		SELECT IFNULL(MAX(MVB_GROUP_NUM), 0) + 1
+		FROM manager_versus_board
+	
+	</select>
+	
+	<insert id="insertBoard" parameterType="com.spring.board.form.MvbBoardForm">
+		
+		<selectKey resultType="int" keyProperty="board_num" order="AFTER">
+
+			SELECT LAST_INSERT_ID()
+
+		</selectKey>
+		
+		INSERT 
+		INTO manager_versus_board 
+		(
+		  	  MVB_GROUP_NUM
+		  	, MVB_ANSWER_DEEP
+		  	, MVB_ANSWER_ORDER
+		  	, M_NICKNAME
+		  	, MVB_TITLE
+		  	, MVB_CONTENT
+		  	, M_ID
+		  	, MVB_INSERT_DATE
+		  	, MVB_UPDATE_DATE
+		) 
+		VALUES 
+		(
+			  #{mvb_group_num}
+			, 0
+			, 0
+			, #{m_nickname}
+			, #{mvb_title}
+			, #{mvb_content}
+			, 'NONMEMBER'
+			, NOW() 
+			, NOW() 
+		)
+			
+	</insert>
+	
+	<insert id="insertBoardFile" parameterType="com.spring.board.form.BoardFileForm">
+	
+		<selectKey resultType="int" keyProperty="bf_num" order="BEFORE">
+			
+			SELECT IFNULL(MAX(BF_NUM), 0) + 1 
+			FROM board_file
+			WHERE BOARD_NUM = #{board_num}
+			  
+		</selectKey>
+				
+		INSERT 
+		INTO board_file
+		(
+			  BOARD_NUM
+			, BF_NUM
+			, BF_NAME_KEY
+			, BF_NAME
+			, BF_PATH
+			, BF_SIZE
+			, BF_DELETE_YN 
+			, M_ID
+			, BF_INSERT_DATE
+			, BF_UPDATE_DATE
+		)
+		VALUES
+		(
+			  #{board_num}
+			, #{bf_num}
+			, #{bf_name_key}
+			, #{bf_name}
+			, #{bf_path}
+			, #{bf_size}
+			, 'N'
+			, 'NONMEMBER'
+			, NOW()
+			, NOW() 
+		)	
+		
+	</insert>
+	
+	<insert id="insertBoardFail" parameterType="com.spring.board.form.MvbBoardForm">
+	
+		INSERT 
+		INTO manager_versus_board 
+		(
+		  	  MVB_GROUP_NUM
+		  	, MVB_ANSWER_DEEP
+		  	, MVB_ANSWER_ORDER
+		  	, M_NICKNAME
+		  	, MVB_TITLE
+		  	, MVB_CONTENT
+		  	, M_ID
+		  	, MVB_INSERT_DATE
+		  	, MVB_UPDATE_DATE
+		) 
+		VALUES 
+		(
+			  0
+			, 0
+			, 0
+			, #{m_nickname}
+			, #{mvb_title}
+			, #{mvb_content}
+			, 'NONMEMBER'
+			, NOW() 
+			, NOW() 
+		)
+	
+	</insert>
+		
+	<delete id="deleteBoard" parameterType="com.spring.board.form.MvbBoardForm">
+	
+		DELETE 
+		FROM manager_versus_board 
+		WHERE BOARD_NUM = #{board_num}
+	
+	</delete>
+	
+	<delete id="updateBoard" parameterType="com.spring.board.form.MvbBoardForm">
+	
+		UPDATE manager_versus_board 
+		   SET MVB_TITLE = #{mvb_title}
+		     , MVB_CONTENT = #{mvb_content}
+		     , MVB_UPDATE_DATE = NOW()
+ 		WHERE BOARD_NUM = #{board_num}
+	
+	</delete>
+	
+	<select id="getBoardReplyInfo" parameterType="com.spring.board.form.MvbBoardForm" resultType="com.spring.board.dto.MvbBoardDto">
+	
+		SELECT BOARD_NUM
+			 , MVB_GROUP_NUM
+			 , MVB_ANSWER_DEEP
+			 , MVB_ANSWER_ORDER
+	    FROM manager_versus_board
+	    WHERE BOARD_NUM = #{mvb_parent_seq}
+	
+	</select>
+	<delete id="updateBoardReSeq" parameterType="com.spring.board.form.MvbBoardForm">
+	
+		UPDATE manager_versus_board 
+		   SET MVB_ANSWER_DEEP = MVB_ANSWER_DEEP + 1
+		     , MVB_UPDATE_DATE = NOW()
+		 WHERE MVB_ANSWER_DEEP = #{mvb_answer_deep} 
+	       AND MVB_ANSWER_ORDER > #{mvb_answer_order}
+	
+	</delete>
+	
+	<insert id="insertBoardReply" parameterType="com.spring.board.form.MvbBoardForm">
+	
+		INSERT 
+		INTO manager_versus_board
+		(
+		  	  MVB_GROUP_NUM
+		  	, MVB_ANSWER_DEEP
+		  	, MVB_ANSWER_ORDER
+		  	, M_NICKNAME
+		  	, MVB_TITLE
+		  	, MVB_CONTENT
+		  	, M_ID
+		  	, MVB_INSERT_DATE
+		  	, MVB_UPDATE_DATE
+		) 
+		VALUES 
+		(
+			  #{mvb_group_num}
+			, #{mvb_answer_deep} + 1
+			, #{mvb_answer_order} + 1
+			, #{m_nickname}
+			, #{mvb_title}
+			, #{mvb_content}
+			, 'NONMEMBER'
+			, NOW()
+			, NOW() 
+		)
+	
+	</insert>
+	
+	<delete id="deleteBoardFile" parameterType="com.spring.board.form.BoardFileForm">
+	
+		UPDATE board_file 
+		   SET BF_DELETE_YN = 'Y'
+		     , BF_UPDATE_DATE = NOW()
+ 		WHERE BOARD_NUM = #{board_num}
+ 		  AND BF_NUM = #{bf_num}
+	
+	</delete>
+	
+</mapper>

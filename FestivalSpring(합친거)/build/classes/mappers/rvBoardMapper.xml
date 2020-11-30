@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.board.rvBoardMapper">
+
+	<select id="getBoardCnt" parameterType="com.spring.board.form.RvBoardForm" resultType="int">
+	
+		SELECT COUNT(*)
+		FROM festival_review_board
+	
+	</select>
+	
+	<select id="getBoardList" parameterType="com.spring.board.form.RvBoardForm" resultType="com.spring.board.dto.RvBoardDto">
+	
+		SELECT *
+		FROM ( 
+				SELECT BOARD_NUM
+					 , FRB_GROUP_NUM 
+					 , M_NICKNAME
+					 , FRB_TITLE
+					 , FRB_CONTENT
+					 , FRB_HITS
+					 , FRB_DELETE_YN
+					 , M_ID
+					 , CAST( DATE_FORMAT( FRB_INSERT_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FRB_insert_date
+					 , CAST( DATE_FORMAT( FRB_UPDATE_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FRB_update_date  
+			   FROM festival_review_board
+			  ) T1
+		LIMIT #{limit} OFFSET #{offset}
+	
+	</select>
+	
+	<delete id="updateBoardHits" parameterType="com.spring.board.form.RvBoardForm">
+	
+		UPDATE festival_review_board 
+		   SET FRB_HITS = FRB_HITS + 1
+		     , FRB_UPDATE_DATE = NOW()
+ 		WHERE BOARD_NUM = #{board_num}
+	
+	</delete>
+	
+	<select id="getBoardDetail" parameterType="com.spring.board.form.RvBoardForm" resultType="com.spring.board.dto.RvBoardDto">
+	
+		SELECT T1.*
+		FROM (
+				SELECT BOARD_NUM 
+					 , FRB_GROUP_NUM 
+					 , M_NICKNAME 
+					 , FRB_TITLE 
+					 , FRB_CONTENT 
+					 , FRB_HITS
+					 , FRB_DELETE_YN
+					 , M_ID
+					 , CAST( DATE_FORMAT( FRB_INSERT_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FRB_insert_date
+					 , CAST( DATE_FORMAT( FRB_UPDATE_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FRB_update_date  
+				FROM festival_review_board
+				WHERE BOARD_NUM = #{board_num}		
+		      ) T1		
+	
+	</select>
+		
+	<select id="getBoardFileList" parameterType="com.spring.board.form.BoardFileForm" resultType="com.spring.board.dto.BoardFileDto">
+	
+		SELECT T1.*
+		FROM (
+				SELECT BOARD_NUM
+					 , BF_NUM
+					 , BF_NAME_KEY
+					 , BF_NAME
+					 , BF_PATH
+					 , BF_SIZE
+			     	, M_ID
+					, CAST( DATE_FORMAT( BF_INSERT_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FRB_insert_date
+					, CAST( DATE_FORMAT( BF_UPDATE_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FRB_update_date
+				FROM board_file
+				WHERE BOARD_NUM = #{board_num}
+				AND BF_DELETE_YN = 'N'
+		      ) T1		
+			
+	</select>
+	
+	<select id="getBoardReRef" parameterType="com.spring.board.form.RvBoardForm" resultType="int">
+	
+		SELECT IFNULL(MAX(FRB_GROUP_NUM), 0) + 1
+		FROM festival_review_board
+	
+	</select>
+	
+	<insert id="insertBoard" parameterType="com.spring.board.form.RvBoardForm">
+		
+		<selectKey resultType="int" keyProperty="board_num" order="AFTER">
+
+			SELECT LAST_INSERT_ID()
+
+		</selectKey>
+		
+		INSERT 
+		INTO festival_review_board 
+		(
+		  	  FRB_GROUP_NUM
+		  	, M_NICKNAME
+		  	, FRB_TITLE
+		  	, FRB_CONTENT
+		  	, M_ID
+		  	, FRB_INSERT_DATE
+		  	, FRB_UPDATE_DATE
+		) 
+		VALUES 
+		(
+			  0
+			, #{m_nickname}
+			, #{frb_title}
+			, #{frb_content}
+			, 'NONMEMBER'
+			, NOW() 
+			, NOW() 
+		)
+			
+	</insert>
+	
+	<insert id="insertBoardFile" parameterType="com.spring.board.form.BoardFileForm">
+	
+		<selectKey resultType="int" keyProperty="bf_num" order="BEFORE">
+			
+			SELECT IFNULL(MAX(BF_NUM), 0) + 1 
+			FROM board_file
+			WHERE BOARD_NUM = #{board_num}
+			  
+		</selectKey>
+				
+		INSERT 
+		INTO board_file
+		(
+			  BOARD_NUM
+			, BF_NUM
+			, BF_NAME_KEY
+			, BF_NAME
+			, BF_PATH
+			, BF_SIZE
+			, BF_DELETE_YN 
+			, M_ID
+			, BF_INSERT_DATE
+			, BF_UPDATE_DATE
+		)
+		VALUES
+		(
+			  #{board_num}
+			, #{bf_num}
+			, #{bf_name_key}
+			, #{bf_name}
+			, #{bf_path}
+			, #{bf_size}
+			, 'N'
+			, 'NONMEMBER'
+			, NOW()
+			, NOW() 
+		)	
+		
+	</insert>
+	
+	<insert id="insertBoardFail" parameterType="com.spring.board.form.RvBoardForm">
+	
+		INSERT 
+		INTO festival_review_board 
+		(
+		  	  FRB_GROUP_NUM
+		  	, M_NICKNAME
+		  	, FRB_TITLE
+		  	, FRB_CONTENT
+		  	, M_ID
+		  	, FRB_INSERT_DATE
+		  	, FRB_UPDATE_DATE
+		) 
+		VALUES 
+		(
+			  0
+			, #{m_nickname}
+			, #{frb_title}
+			, #{frb_content}
+			, 'NONMEMBER'
+			, NOW() 
+			, NOW() 
+		)
+	
+	</insert>
+		
+	<delete id="deleteBoard" parameterType="com.spring.board.form.RvBoardForm">
+	
+		DELETE 
+		FROM festival_review_board 
+		WHERE BOARD_NUM = #{board_num}
+	
+	</delete>
+	
+	<delete id="updateBoard" parameterType="com.spring.board.form.RvBoardForm">
+	
+		UPDATE festival_review_board 
+		   SET FRB_TITLE = #{frb_title}
+		     , FRB_CONTENT = #{frb_content}
+		     , FRB_UPDATE_DATE = NOW()
+ 		WHERE BOARD_NUM = #{board_num}
+	
+	</delete>
+	
+	<delete id="deleteBoardFile" parameterType="com.spring.board.form.BoardFileForm">
+	
+		UPDATE board_file 
+		   SET BF_DELETE_YN = 'Y'
+		     , BF_UPDATE_DATE = NOW()
+ 		WHERE BOARD_NUM = #{board_num}
+ 		  AND BF_NUM = #{bf_num}
+	
+	</delete>
+	
+</mapper>
