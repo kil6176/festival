@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.board.fbBoardMapper">
+
+	<select id="getBoardCnt" parameterType="com.spring.board.form.FbBoardForm" resultType="int">
+	
+		SELECT COUNT(*)
+		FROM freedom_board
+	
+	</select>
+	
+	<select id="getBoardList" parameterType="com.spring.board.form.FbBoardForm" resultType="com.spring.board.dto.FbBoardDto">
+	
+		SELECT *
+		FROM ( 
+				SELECT BOARD_NUM
+					 , FB_GROUP_NUM 
+					 , M_NICKNAME
+					 , FB_TITLE
+					 , FB_CONTENT
+					 , FB_HITS
+					 , FB_DELETE_YN
+					 , M_ID
+					 , CAST( DATE_FORMAT( FB_INSERT_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FB_insert_date
+					 , CAST( DATE_FORMAT( FB_UPDATE_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FB_update_date  
+			   FROM freedom_board
+			  ) T1
+		LIMIT #{limit} OFFSET #{offset}
+	
+	</select>
+	
+	<delete id="updateBoardHits" parameterType="com.spring.board.form.FbBoardForm">
+	
+		UPDATE freedom_board 
+		   SET FB_HITS = FB_HITS + 1
+		     , FB_UPDATE_DATE = NOW()
+ 		WHERE BOARD_NUM = #{board_num}
+	
+	</delete>
+	
+	<select id="getBoardDetail" parameterType="com.spring.board.form.FbBoardForm" resultType="com.spring.board.dto.FbBoardDto">
+	
+		SELECT T1.*
+		FROM (
+				SELECT BOARD_NUM 
+					 , FB_GROUP_NUM 
+					 , M_NICKNAME 
+					 , FB_TITLE 
+					 , FB_CONTENT 
+					 , FB_HITS
+					 , FB_DELETE_YN
+					 , M_ID
+					 , CAST( DATE_FORMAT( FB_INSERT_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FB_insert_date
+					 , CAST( DATE_FORMAT( FB_UPDATE_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FB_update_date  
+				FROM freedom_board
+				WHERE BOARD_NUM = #{board_num}		
+		      ) T1		
+	
+	</select>
+		
+	<select id="getBoardFileList" parameterType="com.spring.board.form.BoardFileForm" resultType="com.spring.board.dto.BoardFileDto">
+	
+		SELECT T1.*
+		FROM (
+				SELECT BOARD_NUM
+					 , BF_NUM
+					 , BF_NAME_KEY
+					 , BF_NAME
+					 , BF_PATH
+					 , BF_SIZE
+			     	, M_ID
+					, CAST( DATE_FORMAT( BF_INSERT_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FB_insert_date
+					, CAST( DATE_FORMAT( BF_UPDATE_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS FB_update_date
+				FROM board_file
+				WHERE BOARD_NUM = #{board_num}
+				AND BF_DELETE_YN = 'N'
+		      ) T1		
+			
+	</select>
+	
+	<select id="getBoardReRef" parameterType="com.spring.board.form.FbBoardForm" resultType="int">
+	
+		SELECT IFNULL(MAX(FB_GROUP_NUM), 0) + 1
+		FROM freedom_board
+	
+	</select>
+	
+	<insert id="insertBoard" parameterType="com.spring.board.form.FbBoardForm">
+		
+		<selectKey resultType="int" keyProperty="board_num" order="AFTER">
+
+			SELECT LAST_INSERT_ID()
+
+		</selectKey>
+		
+		INSERT 
+		INTO freedom_board 
+		(
+		  	  FB_GROUP_NUM
+		  	, M_NICKNAME
+		  	, FB_TITLE
+		  	, FB_CONTENT
+		  	, M_ID
+		  	, FB_INSERT_DATE
+		  	, FB_UPDATE_DATE
+		) 
+		VALUES 
+		(
+			  1
+			, #{m_nickname}
+			, #{fb_title}
+			, #{fb_content}
+			, 'NONMEMBER'
+			, NOW() 
+			, NOW() 
+		)
+			
+	</insert>
+	
+	<insert id="insertBoardFile" parameterType="com.spring.board.form.BoardFileForm">
+	
+		<selectKey resultType="int" keyProperty="bf_num" order="BEFORE">
+			
+			SELECT IFNULL(MAX(BF_NUM), 0) + 1 
+			FROM board_file
+			WHERE BOARD_NUM = #{board_num}
+			  
+		</selectKey>
+				
+		INSERT 
+		INTO board_file
+		(
+			  BOARD_NUM
+			, BF_NUM
+			, BF_NAME_KEY
+			, BF_NAME
+			, BF_PATH
+			, BF_SIZE
+			, BF_DELETE_YN 
+			, M_ID
+			, BF_INSERT_DATE
+			, BF_UPDATE_DATE
+		)
+		VALUES
+		(
+			  #{board_num}
+			, #{bf_num}
+			, #{bf_name_key}
+			, #{bf_name}
+			, #{bf_path}
+			, #{bf_size}
+			, 'N'
+			, 'NONMEMBER'
+			, NOW()
+			, NOW() 
+		)	
+		
+	</insert>
+	
+	<insert id="insertBoardFail" parameterType="com.spring.board.form.FbBoardForm">
+	
+		INSERT 
+		INTO freedom_board 
+		(
+		  	  FB_GROUP_NUM
+		  	, M_NICKNAME
+		  	, FB_TITLE
+		  	, FB_CONTENT
+		  	, M_ID
+		  	, FB_INSERT_DATE
+		  	, FB_UPDATE_DATE
+		) 
+		VALUES 
+		(
+			  0
+			, #{m_nickname}
+			, #{fb_title}
+			, #{fb_content}
+			, 'NONMEMBER'
+			, NOW() 
+			, NOW() 
+		)
+	
+	</insert>
+		
+	<delete id="deleteBoard" parameterType="com.spring.board.form.FbBoardForm">
+	
+		DELETE 
+		FROM freedom_board 
+		WHERE BOARD_NUM = #{board_num}
+	
+	</delete>
+	
+	<delete id="updateBoard" parameterType="com.spring.board.form.FbBoardForm">
+	
+		UPDATE freedom_board 
+		   SET FB_TITLE = #{fb_title}
+		     , FB_CONTENT = #{fb_content}
+		     , FB_UPDATE_DATE = NOW()
+ 		WHERE BOARD_NUM = #{board_num}
+	
+	</delete>
+	
+	<delete id="deleteBoardFile" parameterType="com.spring.board.form.BoardFileForm">
+	
+		UPDATE board_file 
+		   SET BF_DELETE_YN = 'Y'
+		     , BF_UPDATE_DATE = NOW()
+ 		WHERE BOARD_NUM = #{board_num}
+ 		  AND BF_NUM = #{bf_num}
+	
+	</delete>
+	
+</mapper>

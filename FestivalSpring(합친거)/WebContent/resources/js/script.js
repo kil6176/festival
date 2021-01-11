@@ -54,7 +54,7 @@ $(function () {
                 type: "GET",
                 dataType: 'xml',		
 				crossOrigin: true,
-				proxy: "https://www.festvalcl.tk//proxy.php",
+				proxy: "https://www.festvalcl.tk/proxy.php",
                 url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?"
                  + "ServiceKey=j6LXjPijNQRYMD91nULBdKVcG4dB1UwKCSKNzdNF43iSdduDRIYm8t3RaktEga5bhfvKQ5yJj6o7EWMqGVF2NQ%3D%3D"
                  + "&areaCode=" + areaCode
@@ -165,7 +165,7 @@ $(function () {
 	            type: "GET",
 	            dataType: 'xml',
 				crossOrigin: true,
-				proxy: "https://www.festvalcl.tk//proxy.php",
+				proxy: "https://www.festvalcl.tk/proxy.php",
 	            url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?"
 	             + "ServiceKey=j6LXjPijNQRYMD91nULBdKVcG4dB1UwKCSKNzdNF43iSdduDRIYm8t3RaktEga5bhfvKQ5yJj6o7EWMqGVF2NQ%3D%3D"
 	             + "&eventStartDate=" + startDate

@@ -242,7 +242,7 @@ var ratio = window.devicePixelRatio; if(ratio > 1)
 
 .subList {
 	display:inline-block; 
-	width:40%; 
+	width:90%; 
 	text-align:center;  
 	border:1px solid black; 
 	padding:2.0%;
@@ -360,6 +360,7 @@ display:inline-block; width:80%
 			</div>
 			<div id="sub_wrap" class="hidden">
 				<div id="sub_button" align="right">
+					<span style="position:relative; bottom:5px; font-size:15px;">빈 쓰레기통 찾기 ▶</span>
 					<span id="trashBtn" class="fa-stack">
 						<i class="fas fa-trash fa-stack-1x" style="font-size:2.5em;"></i>
 						<i class="fas fas fa-search fa-stack-1x" style=" left:7px; top:9px; color:white; font-size:1.5em;"></i>
@@ -369,7 +370,6 @@ display:inline-block; width:80%
 				<hr>
 				<div id="sub_menu" align="center">
 					<span id="sub_detail_view" class="subList subListClick">축제 정보</span>
-					<span id="sub_image_view" class="subList">축제 이미지</span>
 				</div>
 				<hr>
 				<div id="sub_info">

@@ -46,11 +46,13 @@ $(document).ready(function()
 			$("#user_management").click(function()
 			{
 				menuLink_click(user_management);
+				getUserList();
 			});
 			
 			$("#can_management").click(function()
 			{
 				menuLink_click(can_management);
+				getFestivalList();
 			});
 			
 			$("#login_log").click(function()
@@ -750,7 +752,39 @@ function festivalDetail(fc_num, currentPageNo, fc_name)
 		}
 		console.log("currentPageNo"+currentPageNo);
 		$("#can_current_page_no").val(currentPageNo);
+		$.ajax({
+	        type: "GET",
+	        async: false,
+	        dataType: 'xml',
+			crossOrigin: true,
+			proxy: "https://www.festvalcl.tk/proxy.php",
+	        url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?"
+	             + "ServiceKey=j6LXjPijNQRYMD91nULBdKVcG4dB1UwKCSKNzdNF43iSdduDRIYm8t3RaktEga5bhfvKQ5yJj6o7EWMqGVF2NQ%3D%3D"
+	             + "&contentTypeId=15"
+	             + "&contentId=" + fc_num
+	             + "&MobileOS=ETC"
+	             + "&MobileApp=TourAPI3.0_Guide"
+	             + "&defaultYN=Y"
+	             + "&firstImageYN=Y"
+	             + "&listYN=Y"
+	             + "&catcodeYN=Y"
+	             + "&addrinfoYN=Y"
+	             + "&mapinfoYN=Y"
+	             + "&overviewYN=Y"
+	             + "&transGuideYN=Y",
+	        success: function (data) 
+			{
+	            $(data).find('item').each(function () 
+				{
+	                x = $('mapx', this).text();
+	                y = $('mapy', this).text();
 		
+					$(".add_fc_num").val(fc_num);
+					$(".add_x").val(x);
+					$(".add_y").val(y);
+	            });
+	        }
+	    });
 		$.ajax(
 		{
 			url: "/getTrashCanList.do",
@@ -781,6 +815,9 @@ function festivalDetail(fc_num, currentPageNo, fc_name)
 			var totalCount = data.totalCount;
 			var pagination = data.pagination;
 			var str = "";
+			
+				
+
 			if (listLen > 0)
 			{
 				for (var a = 0; a < listLen; a++)
@@ -801,10 +838,6 @@ function festivalDetail(fc_num, currentPageNo, fc_name)
 					str += "<td>" + t_can_height + "</td>";
 					str += "<td>" + trash_persent + "</td>";
 					str += "</tr>";
-					
-					$(".add_fc_num").val(fc_num);
-					$(".add_x").val(x);
-					$(".add_y").val(y);
 					
 				}
 			}
@@ -872,8 +905,10 @@ function searchLocation(type)
 		var y = $(".add_y").val();
 	}
 	else
+	{
 		var x = $(".change_x").val();
 		var y = $(".change_y").val();
+	}
 	var openWin;
 	// window.name = "부모창 이름"; 
     window.name = "trashCanAdd";

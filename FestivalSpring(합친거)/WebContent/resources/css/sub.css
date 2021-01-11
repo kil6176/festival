@@ -1,37 +1,36 @@
 * {margin:0;padding:0;}
 a{text-decoration: none;color: black;}
 /******************************       banner       ***************************************/
-.sub_banner {max-width:1920px;max-height:270px; position: absolute;top: 27%;  width: 100%;height: 100%;left: 0.0%;clear: both;}
-.sub_banner .textbox {position:absolute;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%);line-height:1.6;text-align:center;}
+.sub_banner {max-width:1920px;max-height:270px; position: relative;top: 27%;  width: 100%;height: 100%;left: 0.0%;clear: both;}
+.sub_banner .textbox {position:relative;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%);line-height:1.6;text-align:center;}
 .sub_banner img{width: 100%;height: 100%;}
 .textbox p{font-size: 20px;font-weight: 200;color: white;}
 /******************************      content        ************************************/
-.sub_content{position: absolute; top: 40%; max-width: 1080px; width: 100%;height: 50%;max-height: 100%;max-height: 1080px;box-sizing: border-box; clear: both; margin: 10% auto;}
-.content_area{max-width: 100%;max-height: 100%;} 
+.sub_content{position: relative; top: 40%; max-width: 1080px; width: 100%; box-sizing: border-box; clear: both; margin: 10% auto;}
 .content_area p{margin:0 auto; font-size: 20px; font: sans-serif; font-weight: 555;}
-#text_top{float: left;max-width: 50%;margin-top:10%;margin-left: 10%;}
+#text_top{margin-top:10%;margin-left: 10%;}
 #text_bottom{float: right; max-width: 40%;margin-top: 8%;}
 .contentbox{margin: 0 auto;max-width: 90%;clear: both; margin-right: 9%;}
 /******************************      nav1      ************************************/
-nav{position: absolute;top:57%;left: 11%;margin: 0.8% auto;max-height:370px;max-width: 200px;width: 100%;height: 100%; background-color: #F3F3F3}
+nav{position: relative;top:57%;left: 11%;margin: 0.8% auto;max-height:370px;max-width: 200px;width: 100%;height: 100%; background-color: #F3F3F3}
 .sub_menu_left{text-align: center; max-height: 120px;height: 100%;vertical-align: middle; background-color:#D1D1D1}
-.sub_menu_left h1{position: absolute;left: 25%;top: 12%;}
+.sub_menu_left h1{position: relative;left: 25%;top: 12%;}
 .sub_menulist_left{}
 .sub_menulist_left ul{list-style: none;}
 .sub_menulist_left ul li{margin: 10%;}
 .sub_menulist_left ul li span{float: right;}
 /******************************      nav2      ************************************/
-.nav2{position: absolute;top:57%;left: 11%;margin: 0.8% auto;max-height:245px;max-width: 200px;width: 100%;height: 100%; background-color: #F3F3F3}
+.nav2{position: relative;top:57%;left: 11%;margin: 0.8% auto;max-height:245px;max-width: 200px;width: 100%;height: 100%; background-color: #F3F3F3}
 .sub_menu_left2{text-align: center; max-height: 120px;height: 100%;vertical-align: middle; background-color:#D1D1D1}
-.sub_menu_left2 h1{position: absolute;left: 25%;top: 18%;}
+.sub_menu_left2 h1{position: relative;left: 25%;top: 18%;}
 .sub_menulist_left2{}
 .sub_menulist_left2 ul{list-style: none;}
 .sub_menulist_left2 ul li{margin: 10%;}
 .sub_menulist_left2 ul li span{float: right;}
 /******************************      community      ************************************/
-.sub_commmunity{position: absolute; width: 100%;height: 100%; max-height: 580px;max-width: 1080PX;min-height: 580px;min-width: 1080px; clear: both;top: 58.7%;background-color: #ffffff;}
+.sub_commmunity{position: relative; width: 100%;height: 100%; max-height: 580px;max-width: 1080PX;min-height: 580px;min-width: 1080px; clear: both;top: 58.7%;background-color: #ffffff;}
 .sub_title_area{width: 100%;height: 100%;max-height: 120px;}
-.list_title{max-width: 350px;width: 100%;position: absolute;left: 2%;top: 6%;}
+.list_title{max-width: 350px;width: 100%;position: relative;left: 2%;top: 6%;}
 .list_title h2{color: black;float: left;}
 .list_title p{margin-top: 2%;float: right;}
 .list_title p a{color: #848484;text-decoration: none;}
@@ -39,7 +38,7 @@ nav{position: absolute;top:57%;left: 11%;margin: 0.8% auto;max-height:370px;max-
 /******************************        footer        **************************************/
 
 .sub_footer{
-    position: absolute;
+    position: relative;
     top: 135%;
     clear: both;  
     max-width: 1080px;
@@ -85,4 +84,8 @@ nav{position: absolute;top:57%;left: 11%;margin: 0.8% auto;max-height:370px;max-
     border: 1px auto;
     font-size: 120%;
     margin-left: 27%;
+}
+.term_wrap
+{
+	
 }

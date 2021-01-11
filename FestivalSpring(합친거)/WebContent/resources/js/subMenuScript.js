@@ -9,7 +9,7 @@
             type: "GET",
             dataType: 'xml',
 			crossOrigin: true,
-			proxy: "https://www.festvalcl.tk//proxy.php",
+			proxy: "https://www.festvalcl.tk/proxy.php",
             url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?"
              + "ServiceKey=j6LXjPijNQRYMD91nULBdKVcG4dB1UwKCSKNzdNF43iSdduDRIYm8t3RaktEga5bhfvKQ5yJj6o7EWMqGVF2NQ%3D%3D"
              + "&contentTypeId=" + contentTypeId
@@ -48,7 +48,7 @@
 		            type: "GET",
 		            dataType: 'xml',
 					crossOrigin: true,
-					proxy: "https://www.festvalcl.tk//proxy.php",
+					proxy: "https://www.festvalcl.tk/proxy.php",
 		            url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro?"
 		             + "ServiceKey=j6LXjPijNQRYMD91nULBdKVcG4dB1UwKCSKNzdNF43iSdduDRIYm8t3RaktEga5bhfvKQ5yJj6o7EWMqGVF2NQ%3D%3D"
 		             + "&contentTypeId=" + contentTypeId
@@ -111,7 +111,7 @@
 				  //var contentID = contentID; //쓰레기통 설치 축제 아이디
 					var canPosition = new kakao.maps.LatLng(canY, canX);
 					var canMarker = "";
-					var trashPersent = (trashHeight / canSize * 100.0);
+					var trashPersent = (canSize / trashHeight)/canSize*100;
 					
 					//퍼센트로 마커 색깔 정하기
 					if(trashPersent <= 25)

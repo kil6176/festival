@@ -14,6 +14,10 @@
 		SELECT count(DISTINCT fc_num)as c FROM festival_concerned where m_id = #{m_id}
 	</select>
 	
+	<select id="getTrashCanCnt" parameterType="com.spring.festival.dto.ManagerVO" resultType="int">
+	SELECT count(*)as c FROM trash_info where fc_num = #{fc_num}
+	</select>
+	
 	<select id="getSelectFestival" parameterType="com.spring.festival.dto.ManagerVO" resultType="ManagerVO">
 		SELECT * FROM festival_concerned where m_id = #{m_id} LIMIT #{limit} OFFSET #{offset}
 	</select>

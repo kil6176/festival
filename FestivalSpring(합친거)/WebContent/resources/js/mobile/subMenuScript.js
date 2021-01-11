@@ -111,7 +111,7 @@
 				  //var contentID = contentID; //쓰레기통 설치 축제 아이디
 					var canPosition = new kakao.maps.LatLng(canY, canX);
 					var canMarker = "";
-					var trashPersent = (trashHeight / canSize * 100.0);
+					var trashPersent = (canSize / trashHeight)/canSize*100;
 					
 					//퍼센트로 마커 색깔 정하기
 					if(trashPersent <= 25)

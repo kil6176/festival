@@ -231,7 +231,26 @@ public class HomeController
 
 		return "redirect:/";
 	}
-
+	
+	// 소개페이지이동
+	@RequestMapping(value = "/intro.do", method = RequestMethod.GET)
+	public String intro(HttpSession session) throws Exception
+	{
+		return "subpage_int";
+	}
+	
+	// 이용약관
+	@RequestMapping(value = "/policy.do", method = RequestMethod.GET)
+	public String policy(HttpSession session) throws Exception
+	{
+		return "subpage_policy";
+	}	
+	// 개인정보처리방침
+	@RequestMapping(value = "/policy2.do", method = RequestMethod.GET)
+	public String policy2(HttpSession session) throws Exception
+	{
+		return "subpage_policy2";
+	}
 	// 쓰레기통 불러오기
 	@ResponseBody
 	@RequestMapping(value = "/trashCanSearch.do", method = { RequestMethod.POST, RequestMethod.GET })

@@ -5,6 +5,9 @@
 <html>
 <head>
 	<title>Home</title>
+	
+    <link rel="stylesheet" type="text/css" href="resources/css/main.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/banner.css">
 		<!-- 합쳐지고 최소화된 최신 CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<!-- 부가적인 테마 -->
@@ -12,9 +15,49 @@
 	
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  
-    <link rel="stylesheet" type="text/css" href="resources/css/main.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/banner.css">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+    $(document).ready(function(){
+    	slide1();
+    	function slide1(){
+    		
+    		setTimeout(function() {
+    		 	$("#change_slide2").trigger("click");
+        		slide2();
+    		}, 5000);
+    		
+    	}
+    	
+    	function slide2(){
+    		
+    		setTimeout(function() {
+    		 	$("#change_slide3").trigger("click");
+        		slide3();
+    		}, 5000);
+    		
+    	}
+    	function slide3(){
+    		
+    		setTimeout(function() {
+    		 	$("#change_slide1").trigger("click");
+        		slide1();
+    		}, 5000);
+
+    	}
+    	
+    	function silde()
+    	{
+    		var bannerCount = $(".right").length;
+    		for(var i=0 ; i<bannerCount ; i++)
+    		{
+    				
+    		}
+    	}
+    });
+    
+    
+    </script>
 </head>
 <body>
 <div id="wrap">
@@ -45,19 +88,19 @@
 				<ul>
                     <li><a href="#" id="current">고객센터</a>
                     	 <ul>
-                            <li><a href="#">공지사항</a></li>
-                            <li><a href="#">초록축제 문의</a></li>
+                            <li><a href="/ne_board/boardList.do">공지사항</a></li>
+                            <li><a href="/fcvb_board/boardList.do">초록축제 문의</a></li>
                         </ul>
                     </li>
-                    <li><a href="suppage_community.html">커뮤니티</a>
+                    <li><a href="#">커뮤니티</a>
                         <ul>
-                            <li><a href="#">자유게시판</a></li>
-                            <li><a href="#">축제리뷰게시판</a></li>
-                            <li><a href="#">관리자게시판</a></li>
-                            <li><a href="#">축제 문의</a></li>
+                            <li><a href="/fb_board/boardList.do">자유게시판</a></li>
+                            <li><a href="/rv_board/boardList.do">축제리뷰게시판</a></li>
+                            <li><a href="/fcb_board/boardList.do">관리자게시판</a></li>
+                            <li><a href="/mvb_board/boardList.do">축제 문의</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">소개</a></li>
+                    <li><a href="/intro.do">소개</a></li>
                 </ul>
 			</div>	
     </header>
@@ -104,11 +147,11 @@
                         <!-- 좌,우 슬라이드 버튼 -->
                         <div class="slide-control">
                             <div>
-                                <label for="slide03" class="left"></label>
-                                <label for="slide02" class="right"></label>
+                                <label for="slide03" id="change_slide3" class="left"></label>
+                                <label for="slide02" id="change_slide2" class="right"></label>
                             </div>
                             <div>
-                                <label for="slide01" class="left"></label>
+                                <label for="slide01" id="change_slide1" class="left"></label>
                                 <label for="slide03" class="right"></label>
                             </div>
                             <div>
@@ -185,15 +228,27 @@
             <img src="resources/images/main/logo2.png" alt="logo"/>
         </div>
         <div class="aside_area">
-            <div><h4><a href="#" target="_self" style="color: #686868;">사이트소개</a>|<a href="#" target="_self" style="color: #686868;">이용약관</a>|<a href="#" target="_self">개인정보처리방침</a>|<a href="#" target="_self " style="color: #686868;">Q&A</a></h4></div>
-            	<div>
-            	<span style="font-weight:bold;">축제미화팀</span><span style="color: #686868;"> 최혁진, 김경민, 김동현, 안상록  <span style="font-weight:bold; color: black;">축제정보</span> TourAPI<br/>
+                <div class="fff">
+                    <h4>
+	                    <a href="/intro.do" target="_self" style="color: #686868;">사이트소개</a>|
+	                    <a href="/policy.do" target="_self" style="color: #686868;">이용약관</a>|
+	                    <a href="/policy2.do" target="_self">개인정보처리방침</a>|
+	                    <a href="/fcvb_board/boardList.do" target="_self " style="color: #686868;">Q&A</a>
+                    </h4>
+                </div>
+                <div class="ddd">
+            	<span style="font-weight:bold;">축제미화팀</span>
+            	<span style="color: #686868;"> 
+            		최혁진, 김경민, 김동현, 안상록, 이수현
+            	 	<span style="font-weight:bold; color: black;">축제정보</span> 
+            	 	TourAPI<br/>
             		인천광역시 동구 재능로 178(송림동 122번지) 인천재능대학교<br/>
             		TEL 032-890-7000 | FAX 032-890-7065<br/>
-                COPYRIGHT 2020 FESTIVAL BEAUTIFICATION. ALL RIGHTS RESERVED.</span>
+                	COPYRIGHT 2020 FESTIVAL BEAUTIFICATION. ALL RIGHTS RESERVED.
+                </span>
                 </div>
         </div>
-	</div>
+    </div>
 </div>
 </body>
 </html>
