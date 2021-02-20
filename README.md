@@ -8,7 +8,7 @@
 
 Front-End : HTML, CSS3, BootStrap, JAVASCRIPT, JQUERY, AJAX
 
-Back-End : SPRING, JAVA, MYBATIS, MY-SQL, AWS(CentOS)
+Back-End : SPRING, JAVA, MYBATIS, My-SQL, AWS(CentOS)
 
 IOT : Python3, C, RaspBerry3, arduino Uno, IR Sensor,  Ultrasonic Sensor
 
