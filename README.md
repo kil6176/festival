@@ -28,4 +28,4 @@ IOT : Python3, C, RaspBerry3, arduino Uno, IR Sensor,  Ultrasonic Sensor
 
 
 
-~~사실 위에있는 메인 페이지, 각 게시판 기능 빼고 내가 다 혼자 만들었다.
+~~사실 위에있는 메인 페이지, 각 게시판 기능 빼고 내가 거의 다 혼자 만들었다.~~
