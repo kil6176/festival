@@ -10,7 +10,7 @@ Front-End : HTML, CSS3, BootStrap, JAVASCRIPT, JQUERY, AJAX
 
 Back-End : SPRING, JAVA, MYBATIS, My-SQL, AWS(CentOS)    
 
-IOT : Python3, C, RaspBerry3, arduino Uno, IR Sensor,  Ultrasonic Sensor    
+IOT : Python3, C, RaspBerryPi3, arduino Uno, IR Sensor,  Ultrasonic Sensor    
 
 
 메인 페이지, 각 게시판 기능을 뺀 전체 개발    
