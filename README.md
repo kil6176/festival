@@ -6,9 +6,9 @@
 
 카카오 맵 API, TOUR API, 스마트 쓰레기통을 결합한 스마트 축제지도    
 
-Front-End : HTML, CSS3, BootStrap, JAVASCRIPT, JQUERY, AJAX    
+Front-End : HTML, CSS3, BootStrap, JavaScript, JQuery, AJAX, JSP    
 
-Back-End : SPRING, JAVA, MYBATIS, My-SQL, AWS(CentOS)    
+Back-End : SPRING, JAVA, MYBATIS, My-SQL, AWS(CentOS), Apache, Apache Tomcat    
 
 IOT : Python3, C, RaspBerryPi3, arduino Uno, IR Sensor,  Ultrasonic Sensor    
 
